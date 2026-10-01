@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MINDMACHINE.IO — Enterprise Technology Intelligence</title>
+<meta name="description" content="Mind Machine combines exceptional engineering minds, secure orchestration and technology-intelligence to turn fragmented systems of record into evidence, judgement and action.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#f3efe6; --paper:#faf8f2; --sand:#ddd5c8; --stone:#a59e92;
+  --ink:#12191d; --ink2:#1c262b; --slate:#4f5a5e; --line:rgba(18,25,29,.14);
+  --white:#fff; --max:1320px; --serif:"Playfair Display",Georgia,serif;
+  --sans:"Inter",Arial,sans-serif; --mono:"DM Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none} button,input,textarea{font:inherit}
+.container{width:min(calc(100% - 40px),var(--max));margin:auto}
+.serif{font-family:var(--serif)}
+.mono{font-family:var(--mono)}
+.eyebrow{font:500 .68rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.eyebrow:before{content:"";width:30px;height:1px;background:currentColor}
+.display{font:400 clamp(2.8rem,6vw,6rem)/.98 var(--serif);letter-spacing:-.045em}
+.section-title{font:400 clamp(2.4rem,5vw,4.7rem)/1.03 var(--serif);letter-spacing:-.035em}
+.lead{font-size:clamp(1.05rem,1.8vw,1.35rem);color:#5d615f;max-width:720px}
+.reveal{opacity:0;transform:translateY(24px);transition:.75s ease}
+.reveal.on{opacity:1;transform:none}
+.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid currentColor;padding:11px 16px;font:500 .67rem var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+
+.brand-logo{width:42px;height:49px;display:block;color:inherit;flex:0 0 auto}
+.hero-brandmark{width:min(34vw,310px);height:auto;color:#e7c792;opacity:.95;filter:drop-shadow(0 0 26px rgba(231,199,146,.12))}
+.hero-logo-art{position:absolute;right:8%;top:50%;transform:translateY(-43%);z-index:2;pointer-events:none}
+.section-mark{width:78px;height:auto;color:var(--ink);opacity:.9}
+.dark-mark{color:var(--ivory)}
+@media(max-width:900px){.hero-logo-art{right:-3%;opacity:.16}.hero-brandmark{width:45vw}}
+
+/* NAV */
+header{position:fixed;inset:0 0 auto;z-index:50;transition:.3s}
+header.scrolled{background:rgba(250,248,242,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+nav{height:82px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;color:white}
+header.scrolled .brand,header.scrolled .navlinks,header.scrolled .hamb{color:var(--ink)}
+.mark{width:38px;height:38px;border:1.5px solid currentColor;transform:rotate(45deg);display:grid;place-items:center}
+.mark span{font:600 17px var(--serif);transform:rotate(-45deg)}
+.brand b{font:500 .92rem var(--serif);letter-spacing:.09em}
+.navlinks{display:none;color:white;align-items:center;gap:28px;font-size:.76rem}
+.navlinks a{opacity:.78}.navlinks a:hover{opacity:1}
+.navcta{border:1px solid currentColor;padding:10px 17px}
+.hamb{border:0;background:none;color:white;width:42px}.hamb i{display:block;width:24px;height:1px;background:currentColor;margin:6px auto}
+.mobile{display:none;background:var(--paper);padding:22px;border-top:1px solid var(--line)}
+.mobile.open{display:grid;gap:18px}
+
+/* HERO */
+.hero{min-height:100svh;background:linear-gradient(120deg,#10171a,#20292d 55%,#353633);color:white;position:relative;overflow:hidden;display:flex;align-items:center}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(#000,transparent 92%)}
+.hero-orbit{position:absolute;width:min(72vw,900px);aspect-ratio:1;right:-25vw;top:5%;border:1px solid rgba(255,255,255,.08);transform:rotate(45deg)}
+.hero-orbit:before,.hero-orbit:after{content:"";position:absolute;inset:15%;border:1px solid rgba(255,255,255,.06)}
+.hero-orbit:after{inset:31%}
+.hero-inner{position:relative;z-index:2;padding:130px 0 70px}
+.hero .eyebrow{color:#b9b6ae}
+.hero h1{max-width:1050px}
+.hero h1 em{font-style:normal;color:#aaa99f}
+.hero-copy{max-width:680px;margin-top:34px;font-size:clamp(1.08rem,2vw,1.32rem);color:rgba(255,255,255,.72)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.btn{display:inline-flex;align-items:center;gap:18px;padding:14px 21px;border:1px solid rgba(255,255,255,.55);font:500 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;transition:.25s}
+.btn:after{content:"→"}.btn:hover{background:white;color:var(--ink)}
+.hero-proof{margin-top:80px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);display:grid;grid-template-columns:1fr;gap:20px;max-width:920px}
+.hero-proof small{display:block;color:#8f9594;font:400 .63rem var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.hero-proof span{font-size:.9rem;color:#d8d8d3}
+
+/* PROBLEM */
+.problem{padding:120px 0;background:var(--ivory)}
+.split{display:grid;gap:60px}
+.problem-copy p{margin-top:28px}
+.system-strip{margin-top:65px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}
+.system{padding:23px 10px;border-right:1px solid var(--line);font:400 .66rem var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.system:nth-child(even){border-right:0}
+.system strong{display:block;font:400 1.4rem var(--serif);text-transform:none;letter-spacing:0;margin-top:7px}
+.quote{padding:110px 0;background:var(--ink);color:white}
+.quote blockquote{font:400 clamp(2.3rem,5.4vw,5.4rem)/1.1 var(--serif);max-width:1120px;letter-spacing:-.035em}
+.quote blockquote span{color:#979990}
+
+
+/* PROPOSITION */
+.proposition{padding:120px 0;background:var(--paper)}
+.prop-head{display:grid;gap:34px;margin-bottom:65px}
+.prop-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.prop-card{background:var(--paper);padding:34px;min-height:275px;display:flex;flex-direction:column}
+.prop-card .no{font:.62rem var(--mono);color:#858982}
+.prop-card h3{font:400 1.55rem var(--serif);margin-top:auto;margin-bottom:13px}
+.prop-card p{font-size:.84rem;color:#666a66}
+.prop-principle{margin-top:38px;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:12px}
+.prop-principle strong{font:400 clamp(1.45rem,3vw,2.3rem) var(--serif)}
+.prop-principle span{font-size:.85rem;color:#686b67;max-width:760px}
+
+/* SPECTRUM */
+.spectrum{padding:120px 0;background:#d9d2c6}
+.spectrum-bar{margin-top:55px;position:relative;padding-top:35px}
+.spectrum-line{height:1px;background:rgba(18,25,29,.35);position:relative}
+.spectrum-line:before,.spectrum-line:after{content:"";position:absolute;top:-4px;width:9px;height:9px;border:1px solid var(--ink);border-radius:50%;background:#d9d2c6}
+.spectrum-line:before{left:0}.spectrum-line:after{right:0}
+.spectrum-labels{display:flex;justify-content:space-between;margin-top:15px;font:.62rem var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.spectrum-copy{display:grid;gap:25px;margin-top:50px}
+.spectrum-copy article{border-top:1px solid rgba(18,25,29,.18);padding-top:18px}
+.spectrum-copy h3{font:400 1.3rem var(--serif);margin-bottom:8px}.spectrum-copy p{font-size:.82rem;color:#60645f}
+
+/* M&A */
+.ma{padding:120px 0;background:var(--paper)}
+.ma-grid{display:grid;gap:65px}
+.ma-flow{border-top:1px solid var(--line)}
+.ma-step{padding:23px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:42px 1fr}
+.ma-step span{font:.6rem var(--mono);color:#858982}.ma-step h3{font:400 1.25rem var(--serif)}
+.ma-step p{font-size:.8rem;color:#686c68;margin-top:5px}
+
+/* CULTURE */
+.culture{padding:120px 0;background:var(--ivory)}
+.culture-grid{display:grid;gap:65px}
+.values{display:grid;gap:0;border-top:1px solid var(--line)}
+.value{padding:23px 0;border-bottom:1px solid var(--line)}
+.value small{font:.58rem var(--mono);color:#898c86}.value h3{font:400 1.25rem var(--serif);margin:8px 0}.value p{font-size:.82rem;color:#676a65}
+
+/* ARCHITECTURE */
+.architecture{padding:120px 0;background:var(--paper)}
+.arch-head{display:grid;gap:25px;margin-bottom:65px}
+.pipeline{display:grid;gap:12px;position:relative}
+.stage{border:1px solid var(--line);padding:28px;background:#f7f4ed;min-height:165px;position:relative;overflow:hidden}
+.stage-num{font:400 .63rem var(--mono);color:#898b87;letter-spacing:.1em}
+.stage h3{font:400 1.35rem var(--serif);margin:32px 0 8px}
+.stage p{font-size:.82rem;color:#666b68}
+.stage.active{background:var(--ink2);color:white}.stage.active p{color:#b9bfbd}
+.arrow{display:none}
+.flow-note{margin-top:25px;font:.72rem var(--mono);color:#747874}
+
+/* intelligence */
+.intelligence{background:#d9d2c6;padding:120px 0}
+.intelligence-intro{display:grid;gap:55px;align-items:end}
+.intelligence-label{font:500 .68rem var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.intelligence-copy p{margin-top:25px;max-width:700px;color:#505653}
+.product-shell{margin-top:70px;background:#11191d;border:1px solid rgba(0,0,0,.3);box-shadow:0 35px 90px rgba(23,25,25,.18);color:white;overflow:hidden}
+.shell-top{height:50px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font:400 .62rem var(--mono);color:#8e999a}
+.shell-dots{display:flex;gap:6px}.shell-dots i{width:6px;height:6px;border-radius:50%;background:#667073}
+.shell-body{display:grid;grid-template-columns:1fr}
+.sidebar{display:none;border-right:1px solid rgba(255,255,255,.09);padding:24px 17px}
+.sidebar div{padding:9px;font:.63rem var(--mono);color:#788386}.sidebar .selected{color:white;background:rgba(255,255,255,.06)}
+.dashboard{padding:24px}
+.dash-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.dash-title h3{font:400 1.5rem var(--serif)}
+.dash-title span{font:.6rem var(--mono);color:#849091}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.metric{border:1px solid rgba(255,255,255,.1);padding:17px;min-height:110px}
+.metric small{font:.57rem var(--mono);color:#778386;text-transform:uppercase;letter-spacing:.08em}
+.metric b{display:block;font:400 2rem var(--serif);margin-top:12px}
+.metric p{font-size:.66rem;color:#929b9a}
+.graph-panel{margin-top:9px;border:1px solid rgba(255,255,255,.1);height:260px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.04),transparent 50%)}
+.node{position:absolute;width:9px;height:9px;border:1px solid #bdc3bf;border-radius:50%;background:#11191d;box-shadow:0 0 0 4px rgba(255,255,255,.03)}
+.edge{position:absolute;height:1px;background:rgba(255,255,255,.17);transform-origin:left center}
+.n1{left:18%;top:30%}.n2{left:42%;top:18%}.n3{left:65%;top:34%}.n4{left:78%;top:66%}.n5{left:48%;top:72%}.n6{left:22%;top:68%}
+.e1{left:19%;top:31%;width:25%;transform:rotate(-14deg)}.e2{left:43%;top:20%;width:25%;transform:rotate(17deg)}
+.e3{left:65%;top:36%;width:25%;transform:rotate(46deg)}.e4{left:49%;top:72%;width:31%;transform:rotate(-7deg)}
+.e5{left:23%;top:68%;width:27%;transform:rotate(4deg)}.e6{left:19%;top:32%;width:38%;transform:rotate(64deg)}
+.graph-caption{position:absolute;left:16px;bottom:14px;font:.57rem var(--mono);color:#738083;text-transform:uppercase;letter-spacing:.08em}
+
+/* CAPABILITIES */
+.intelligence{padding:120px 0;background:var(--paper)}
+.intro-row{display:grid;gap:30px;margin-bottom:65px}
+.cap-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.cap{background:var(--paper);padding:31px;min-height:250px;transition:.25s}
+.cap:hover{background:var(--ivory)}
+.cap .icon{font:400 .7rem var(--mono);color:#858982;margin-bottom:55px}
+.cap h3{font:400 1.45rem var(--serif);margin-bottom:13px}.cap p{font-size:.85rem;color:#666a66}
+
+/* ASSESSMENT */
+.assessment{padding:120px 0;background:#20282c;color:white}
+.assess-head{display:grid;gap:35px;margin-bottom:65px}.assess-head .lead{color:#abb2b0}
+.pillars{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.13);border-left:1px solid rgba(255,255,255,.13)}
+.pillar{min-height:115px;padding:18px;border-right:1px solid rgba(255,255,255,.13);border-bottom:1px solid rgba(255,255,255,.13)}
+.pillar small{font:.55rem var(--mono);color:#687476}.pillar p{margin-top:20px;font-size:.8rem;color:#d4d6d2}
+.checks{margin-top:45px;display:flex;align-items:baseline;gap:18px}.checks strong{font:400 clamp(3rem,8vw,7rem) var(--serif)}.checks span{max-width:300px;color:#969f9d;font-size:.8rem}
+
+/* SERVICES */
+.services{padding:120px 0;background:var(--ivory)}
+.service-grid{margin-top:60px;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.service{background:var(--ivory);padding:35px;min-height:330px;display:flex;flex-direction:column}
+.service .no{font:.63rem var(--mono);color:#85847d}.service h3{font:400 1.7rem var(--serif);margin-top:auto;margin-bottom:15px}
+.service p{font-size:.85rem;color:#66655f}.service ul{list-style:none;margin-top:20px;font-size:.77rem;color:#77756e}
+.service li{margin:6px 0}.service li:before{content:"— ";}
+
+/* PRODUCTS */
+.products{padding:120px 0;background:var(--paper)}
+.product-grid{display:grid;gap:18px;margin-top:60px}
+.product{border:1px solid var(--line);padding:36px;min-height:390px;position:relative;overflow:hidden}
+.product:after{content:"";position:absolute;width:180px;height:180px;border:1px solid var(--line);right:-90px;bottom:-90px;transform:rotate(45deg)}
+.product .tag{font:.6rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#777b77}
+.product h3{font:400 2rem var(--serif);margin-top:80px}.product p{margin-top:15px;max-width:340px;color:#646864;font-size:.9rem}
+.product.featured{background:var(--ink);color:white}.product.featured p{color:#abb1af}.product.featured:after{border-color:rgba(255,255,255,.13)}
+
+/* SECURITY */
+.security{padding:120px 0;background:#d9d2c6}
+.security-grid{display:grid;gap:55px}
+.guardrails{display:grid;gap:0;border-top:1px solid rgba(0,0,0,.18)}
+.guard{padding:22px 0;border-bottom:1px solid rgba(0,0,0,.18);display:grid;grid-template-columns:42px 1fr;gap:10px}
+.guard b{font:400 .67rem var(--mono)}.guard strong{font-weight:500;font-size:.9rem}.guard p{font-size:.8rem;color:#64655f;margin-top:5px}
+
+/* USE CASES */
+.usecases{padding:120px 0;background:var(--paper)}
+.use-grid{display:grid;margin-top:55px;border-top:1px solid var(--line)}
+.use{padding:25px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:45px 1fr;gap:12px}
+.use h3{font:400 1.3rem var(--serif)}.use p{font-size:.82rem;color:#686c68;margin-top:5px}.use span{font:.6rem var(--mono);color:#888c87}
+
+/* CONTACT */
+.contact{padding:120px 0;background:#11191d;color:white}
+.contact-grid{display:grid;gap:65px}.contact .lead{color:#aeb5b2;margin-top:25px}
+form{display:grid;gap:25px}.field label{display:block;font:.6rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#87908f;margin-bottom:8px}
+.field input,.field textarea{width:100%;border:0;border-bottom:1px solid rgba(255,255,255,.28);background:transparent;color:white;padding:11px 0;outline:0}
+.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus{border-color:white}
+.submit{width:max-content;background:none;color:white;border:1px solid rgba(255,255,255,.5);padding:13px 20px;font:.65rem var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.form-note{font-size:.72rem;color:#7f8a88;display:none}
+footer{background:#0b1114;color:#77817f;padding:30px 0;font:.62rem var(--mono)}
+.foot{display:flex;flex-direction:column;gap:12px}
+
+/* RESPONSIVE */
+@media(min-width:720px){
+ .container{width:min(calc(100% - 72px),var(--max))}
+ .navlinks{display:flex}.hamb{display:none}
+ .hero-proof{grid-template-columns:repeat(3,1fr)}
+ .split{grid-template-columns:.8fr 1.2fr;gap:100px}
+ .system-strip{grid-template-columns:repeat(4,1fr)} .system:nth-child(even){border-right:1px solid var(--line)} .system:last-child{border-right:0}
+ .arch-head,.intro-row,.assess-head,.intelligence-intro,.security-grid,.contact-grid,.prop-head,.ma-grid,.culture-grid{grid-template-columns:1fr 1fr;gap:80px}
+ .prop-grid{grid-template-columns:repeat(3,1fr)}
+ .spectrum-copy{grid-template-columns:repeat(3,1fr);gap:35px}
+ .pipeline{grid-template-columns:repeat(5,1fr);gap:0}
+ .stage{border-right:0}.stage:last-child{border-right:1px solid var(--line)}
+ .shell-body{grid-template-columns:150px 1fr}.sidebar{display:block}
+ .metrics{grid-template-columns:repeat(4,1fr)}
+ .cap-grid{grid-template-columns:repeat(3,1fr)}
+ .pillars{grid-template-columns:repeat(4,1fr)}
+ .service-grid{grid-template-columns:repeat(4,1fr)}
+ .product-grid{grid-template-columns:repeat(3,1fr)}
+ .use-grid{grid-template-columns:1fr 1fr;border-left:1px solid var(--line)} .use{padding:28px;border-right:1px solid var(--line)}
+ .foot{flex-direction:row;justify-content:space-between}
+}
+@media(min-width:1100px){
+ .hero-inner{padding-top:150px}
+ .problem,.proposition,.spectrum,.architecture,.intelligence,.intelligence,.assessment,.services,.products,.security,.usecases,.ma,.culture,.contact{padding-top:150px;padding-bottom:150px}
+ .cap-grid{grid-template-columns:repeat(4,1fr)}
+ .pillars{grid-template-columns:repeat(6,1fr)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<header id="header">
+ <nav class="container">
+  <a class="brand" href="#home"><svg class="brand-logo" viewBox="0 0 140 164" aria-label="Mind Machine logo" role="img" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
+  <path d="M31 31 L70 8 L109 31"/>
+  <path d="M20 52 L70 82 L120 52 L120 116"/>
+  <path d="M20 52 L20 116"/>
+  <path d="M42 77 L70 94 L98 77 L98 128"/>
+  <path d="M42 77 L42 128"/>
+  <path d="M70 94 L70 139"/>
+  <path d="M35 137 L70 158 L105 137"/>
+</g>
+</svg><b>MINDMACHINE.IO</b></a>
+  <div class="navlinks">
+   <a href="#who">Who We Are</a><a href="#how">How It Works</a><a href="#intelligence">Technology Intelligence</a>
+   <a href="#services">Services</a><a href="#products">Products</a><a class="navcta" href="#contact">Contact</a>
+  </div>
+  <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+ </nav>
+ <div class="mobile" id="mobile"><a href="#who">Who We Are</a><a href="#how">How It Works</a><a href="#intelligence">Technology Intelligence</a><a href="#services">Services</a><a href="#products">Products</a><a href="#contact">Contact</a></div>
+</header>
+
+<main>
+<section class="hero" id="home">
+ <div class="grid-bg"></div><div class="hero-orbit"></div><div class="hero-logo-art"><svg class="hero-brandmark" viewBox="0 0 140 164" aria-label="Mind Machine logo" role="img" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
+  <path d="M31 31 L70 8 L109 31"/>
+  <path d="M20 52 L70 82 L120 52 L120 116"/>
+  <path d="M20 52 L20 116"/>
+  <path d="M42 77 L70 94 L98 77 L98 128"/>
+  <path d="M42 77 L42 128"/>
+  <path d="M70 94 L70 139"/>
+  <path d="M35 137 L70 158 L105 137"/>
+</g>
+</svg></div>
+ <div class="container hero-inner">
+  <p class="eyebrow">Mind + Machine / Enterprise AI Readiness</p>
+  <h1 class="display">Understand your technology.<br><em>Decide what comes next.</em></h1>
+  <p class="hero-copy">Embracing AI can be daunting. We help organisations unify and organise their technology assets to be intelligent AI users.</p>
+  <div class="hero-actions"><a class="btn" href="#how">See how it works</a><a class="btn" href="#contact">Start with the problem</a></div>
+  <div class="hero-proof">
+   <div><small>01 / Evidence</small><span>Understand the estate you actually have.</span></div>
+   <div><small>02 / Judgement</small><span>Turn fragmented records into decision intelligence.</span></div>
+   <div><small>03 / Action</small><span>Transform with expert minds and intelligent machines.</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="problem" id="who">
+ <div class="container">
+  <div class="split">
+   <div class="reveal"><p class="eyebrow">Who we are</p><h2 class="section-title">AI adoption doesn't<br>just happen.</h2></div>
+   <div class="problem-copy reveal">
+    <p class="lead">Tech and data experts who understand that AI adoption doesn't just happen. We are not trying to replace Open AI or Anthropic but to give you the tools to use AI in a model agnostic and token optimised way.</p>
+    <p>We understand legacy tech, complex data sets and use this knowledge to create an AI ready blueprint of your business.</p>
+   </div>
+  </div>
+  <div class="system-strip reveal">
+   <div class="system">System 01<strong>Source code</strong></div><div class="system">System 02<strong>Work & delivery</strong></div>
+   <div class="system">System 03<strong>Architecture</strong></div><div class="system">System 04<strong>Operations</strong></div>
+  </div>
+ </div>
+</section>
+
+
+<section class="proposition">
+ <div class="container">
+  <div class="prop-head">
+   <div class="reveal"><div style="margin-bottom:28px"><svg class="section-mark" viewBox="0 0 140 164" aria-label="Mind Machine logo" role="img" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
+  <path d="M31 31 L70 8 L109 31"/>
+  <path d="M20 52 L70 82 L120 52 L120 116"/>
+  <path d="M20 52 L20 116"/>
+  <path d="M42 77 L70 94 L98 77 L98 128"/>
+  <path d="M42 77 L42 128"/>
+  <path d="M70 94 L70 139"/>
+  <path d="M35 137 L70 158 L105 137"/>
+</g>
+</svg></div><p class="eyebrow">Our proposition</p><h2 class="section-title">We solve the problem.<br>Not sell the solution.</h2></div>
+   <div class="reveal"><p class="lead">Every organisation starts somewhere different. We begin by understanding the business problem, then apply the right combination of independent advice, exceptional people and intelligent technology.</p></div>
+  </div>
+  <div class="prop-grid">
+   <article class="prop-card reveal"><span class="no">01 / ADVISE</span><h3>Independent advice</h3><p>We are not incentivised to force a particular model, platform or delivery shape. If the best answer is different from ours, we should be prepared to say so.</p></article>
+   <article class="prop-card reveal"><span class="no">02 / ENGINEER</span><h3>Exceptional people</h3><p>Experienced engineers and architects who can reason, design and deliver without AI — and use AI intelligently to move faster when it adds value.</p></article>
+   <article class="prop-card reveal"><span class="no">03 / ACCELERATE</span><h3>Intelligent technology</h3><p>Our orchestration and technology intelligence capabilities automate the heavy lifting of understanding complex estates, so expert people can focus on judgement and action.</p></article>
+  </div>
+  <div class="prop-principle reveal">
+   <strong>No body-shopping. No technology looking for a problem. No AI for AI's sake.</strong>
+   <span>Our economics should come from solving valuable problems effectively — not from maximising the number of people deployed.</span>
+  </div>
+ </div>
+</section>
+
+<section class="spectrum">
+ <div class="container">
+  <div class="split">
+   <div class="reveal"><p class="eyebrow">Meet you where you are</p><h2 class="section-title">There is no single<br>AI starting point.</h2></div>
+   <p class="lead reveal">Some organisations are still heavily manual. Others already operate with sophisticated AI-enabled engineering. The answer should reflect the organisation, its technology and its readiness — not our preferred solution.</p>
+  </div>
+  <div class="spectrum-bar reveal">
+   <div class="spectrum-line"></div>
+   <div class="spectrum-labels"><span>Manual / fragmented</span><span>AI-enabled / integrated</span></div>
+  </div>
+  <div class="spectrum-copy">
+   <article class="reveal"><h3>Understand first</h3><p>Establish the actual problem, constraints and evidence before recommending change.</p></article>
+   <article class="reveal"><h3>Choose deliberately</h3><p>Consulting, engineering, technology or a combination — according to what creates the most value.</p></article>
+   <article class="reveal"><h3>Accelerate responsibly</h3><p>Use AI where it improves speed and quality while retaining context, governance and human judgement.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="quote">
+ <div class="container reveal">
+  <p class="eyebrow">Our philosophy</p>
+  <blockquote>We don't start with what we want to sell. <span>We start with what you need to solve.</span></blockquote>
+ </div>
+</section>
+
+<section class="architecture" id="how">
+ <div class="container">
+  <div class="arch-head">
+   <div class="reveal"><p class="eyebrow">How Mind Machine works</p><h2 class="section-title">From systems of record<br>to a system of judgement.</h2></div>
+   <p class="lead reveal">We establish context before asking AI for conclusions. Enterprise evidence is collected, structured and connected first. AI then operates against that bounded context, with experienced people providing validation and judgement.</p>
+  </div>
+  <div class="pipeline reveal">
+   <div class="stage"><span class="stage-num">01 / INPUT</span><h3>Systems of Record</h3><p>Code, delivery, documentation, infrastructure and operational evidence.</p></div>
+   <div class="stage"><span class="stage-num">02 / CONNECT</span><h3>Orchestration</h3><p>Secure connectors collect and normalise relevant enterprise evidence.</p></div>
+   <div class="stage active"><span class="stage-num">03 / CONTEXT</span><h3>Evidence Graph</h3><p>Relationships, dependencies, signals and facts form a connected technology model.</p></div>
+   <div class="stage"><span class="stage-num">04 / REASON</span><h3>Technology Intelligence</h3><p>Analytics and AI turn structured context into findings, options and decision support.</p></div>
+   <div class="stage"><span class="stage-num">05 / ACT</span><h3>Human Judgement</h3><p>Engineers and architects validate, interpret and translate evidence into action.</p></div>
+  </div>
+  <p class="flow-note reveal">The LLM is part of the reasoning layer — not a substitute for understanding the underlying technology estate.</p>
+ </div>
+</section>
+
+<section class="intelligence" id="intelligence">
+ <div class="container">
+  <div class="intelligence-intro">
+   <div class="reveal"><p class="intelligence-label">Technology Intelligence</p><h2 class="section-title">Technology intelligence<br>for consequential decisions.</h2></div>
+   <div class="intelligence-copy reveal"><p class="lead">Our technology intelligence layer brings fragmented technology evidence together, builds a connected understanding of the estate and turns it into decision-ready intelligence.</p><p>Instead of treating source code, delivery systems, documentation and infrastructure as isolated artefacts, intelligence analyses the relationships between them to expose what matters.</p></div>
+  </div>
+
+  <div class="product-shell reveal">
+   <div class="shell-top"><div class="shell-dots"><i></i><i></i><i></i></div><span>MINDMACHINE / TECHNOLOGY INTELLIGENCE</span><span>ESTATE / 01</span></div>
+   <div class="shell-body">
+    <aside class="sidebar"><div class="selected">Overview</div><div>Evidence Graph</div><div>Architecture</div><div>Risk</div><div>Maturity</div><div>Recommendations</div><div>Decision Pack</div></aside>
+    <div class="dashboard">
+     <div class="dash-title"><h3>Enterprise Technology Overview</h3><span>EVIDENCE-LED / MODEL-AGNOSTIC</span></div>
+     <div class="metrics">
+      <div class="metric"><small>Evidence sources</small><b>Connected</b><p>Correlated across systems</p></div>
+      <div class="metric"><small>Assessment</small><b>12</b><p>Technology pillars</p></div>
+      <div class="metric"><small>Analysis</small><b>365+</b><p>Potential checks</p></div>
+      <div class="metric"><small>Output</small><b>Action</b><p>Evidence to judgement</p></div>
+     </div>
+     <div class="graph-panel">
+      <i class="edge e1"></i><i class="edge e2"></i><i class="edge e3"></i><i class="edge e4"></i><i class="edge e5"></i><i class="edge e6"></i>
+      <i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i><i class="node n5"></i><i class="node n6"></i>
+      <span class="graph-caption">Evidence graph / relationships / dependencies / risk signals</span>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="intelligence">
+ <div class="container">
+  <div class="intro-row">
+   <div class="reveal"><p class="eyebrow">What the platform produces</p><h2 class="section-title">Evidence becomes<br>intelligence.</h2></div>
+   <p class="lead reveal">The goal is not another dashboard. It is a coherent, evidence-backed view of technology that leaders and engineering teams can use to make better decisions.</p>
+  </div>
+  <div class="cap-grid">
+   <article class="cap reveal"><div class="icon">01 / MAP</div><h3>System understanding</h3><p>Build a structured view of applications, components, relationships, dependencies and architecture from available evidence.</p></article>
+   <article class="cap reveal"><div class="icon">02 / EVIDENCE</div><h3>Evidence graph</h3><p>Connect facts that live across different systems of record rather than interpreting each source in isolation.</p></article>
+   <article class="cap reveal"><div class="icon">03 / RISK</div><h3>Risks & wins</h3><p>Surface technology concerns alongside strengths and positive signals, with evidence that can be investigated.</p></article>
+   <article class="cap reveal"><div class="icon">04 / MATURITY</div><h3>Maturity assessment</h3><p>Assess engineering and technology maturity across multiple dimensions rather than relying on a single generic score.</p></article>
+   <article class="cap reveal"><div class="icon">05 / DEBT</div><h3>Technical debt</h3><p>Make hidden complexity and accumulated engineering constraints easier to understand and prioritise.</p></article>
+   <article class="cap reveal"><div class="icon">06 / OPTIONS</div><h3>Recommendations</h3><p>Translate technical evidence into practical considerations and options for engineering and technology leaders.</p></article>
+   <article class="cap reveal"><div class="icon">07 / EXEC</div><h3>Executive insight</h3><p>Abstract complex technology findings into concise, decision-oriented views without losing the supporting evidence.</p></article>
+   <article class="cap reveal"><div class="icon">08 / ACTION</div><h3>Decision packs</h3><p>Structure outcomes around what to fix now, where to invest and what requires further assurance.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="assessment">
+ <div class="container">
+  <div class="assess-head">
+   <div class="reveal"><div style="margin-bottom:28px"><svg class="section-mark dark-mark" viewBox="0 0 140 164" aria-label="Mind Machine logo" role="img" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
+  <path d="M31 31 L70 8 L109 31"/>
+  <path d="M20 52 L70 82 L120 52 L120 116"/>
+  <path d="M20 52 L20 116"/>
+  <path d="M42 77 L70 94 L98 77 L98 128"/>
+  <path d="M42 77 L42 128"/>
+  <path d="M70 94 L70 139"/>
+  <path d="M35 137 L70 158 L105 137"/>
+</g>
+</svg></div><p class="eyebrow">Deep technology assessment</p><h2 class="section-title">A multidimensional view<br>of engineering maturity.</h2></div>
+   <p class="lead reveal">Our platform can assess the technology estate across twelve complementary pillars, using hundreds of evidence-led checks where the required source information is available.</p>
+  </div>
+  <div class="pillars reveal">
+   <div class="pillar"><small>01</small><p>Architecture</p></div><div class="pillar"><small>02</small><p>Code quality</p></div>
+   <div class="pillar"><small>03</small><p>Security</p></div><div class="pillar"><small>04</small><p>Reliability</p></div>
+   <div class="pillar"><small>05</small><p>Delivery</p></div><div class="pillar"><small>06</small><p>Observability</p></div>
+   <div class="pillar"><small>07</small><p>Data</p></div><div class="pillar"><small>08</small><p>Infrastructure</p></div>
+   <div class="pillar"><small>09</small><p>Testing</p></div><div class="pillar"><small>10</small><p>Documentation</p></div>
+   <div class="pillar"><small>11</small><p>Engineering practice</p></div><div class="pillar"><small>12</small><p>AI readiness</p></div>
+  </div>
+  <div class="checks reveal"><strong>365+</strong><span>potential checks across the technology landscape, applied according to available evidence and scope.</span></div>
+ </div>
+</section>
+
+<section class="services" id="services">
+ <div class="container">
+  <p class="eyebrow reveal">Our services</p><h2 class="section-title reveal">Diagnose first.<br>Prescribe second.</h2>
+  <div class="service-grid">
+   <article class="service reveal"><span class="no">01</span><h3>Unified orchestration</h3><p>Build the evidence foundation required for meaningful analysis.</p><ul><li>Privacy first</li><li>Whole system approach</li><li>Proprietary data graph</li></ul></article>
+   <article class="service reveal"><span class="no">02</span><h3>Deciphering legacy</h3><p>Make complex or poorly understood technology estates visible again.</p><ul><li>System documentation</li><li>Maturity assessment</li><li>Unlock the "black box"</li></ul></article>
+   <article class="service reveal"><span class="no">03</span><h3>Informed transformation</h3><p>Use evidence and engineering judgement to determine what should change and why.</p><ul><li>Strategic decision support</li><li>Code transformation</li><li>Increased velocity</li></ul></article>
+   <article class="service reveal"><span class="no">04</span><h3>Engineering execution</h3><p>Bring exceptional AI-native engineering capability when transformation requires people as well as technology.</p><ul><li>Expert engineering</li><li>Architecture</li><li>AI-enabled delivery</li></ul></article>
+  </div>
+ </div>
+</section>
+
+<section class="products" id="products">
+ <div class="container">
+  <p class="eyebrow reveal">How we create value</p><h2 class="section-title reveal">The right combination<br>for the problem.</h2>
+  <div class="product-grid">
+   <article class="product reveal"><span class="tag">Mind / Expertise</span><h3>Exceptional People</h3><p>Exceptional engineers and architects with deep expertise. AI and proprietary tooling amplify their capability; they do not replace it.</p></article>
+   <article class="product reveal"><span class="tag">Machine / Foundation</span><h3>Secure Orchestration</h3><p>Automated Secure data orchestration that brings relevant technology evidence together for analysis.</p></article>
+   <article class="product featured reveal"><span class="tag">Judgement / Intelligence</span><h3>Technology Intelligence</h3><p>A connected environment for technology analytics, evidence, assessment, reasoning and decision support. Our methods and platform improve across engagements while customer information remains subject to agreed governance and controls.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="security">
+ <div class="container security-grid">
+  <div class="reveal"><p class="eyebrow">Enterprise by design</p><h2 class="section-title">Intelligence without surrendering control.</h2><p class="lead" style="margin-top:25px">Enterprise AI only works when security, sovereignty and governance are treated as design constraints, not afterthoughts.</p></div>
+  <div class="guardrails reveal">
+   <div class="guard"><b>01</b><div><strong>Deploy to the appropriate environment</strong><p>Architecture can be designed around customer security and deployment requirements.</p></div></div>
+   <div class="guard"><b>02</b><div><strong>Controlled data movement</strong><p>Relevant evidence is collected deliberately through approved connectors and boundaries.</p></div></div>
+   <div class="guard"><b>03</b><div><strong>Model agnostic</strong><p>Use an appropriate approved LLM rather than making the business dependent on a single model provider.</p></div></div>
+   <div class="guard"><b>04</b><div><strong>Human in the loop</strong><p>AI-generated interpretation is reviewed in context by people with the expertise to challenge it.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="usecases">
+ <div class="container">
+  <p class="eyebrow reveal">Where we help</p><h2 class="section-title reveal">Complex technology.<br>Consequential decisions.</h2>
+  <div class="use-grid">
+   <article class="use reveal"><span>01</span><div><h3>Legacy technology deciphering</h3><p>Understand systems that have become difficult to explain, document or safely change.</p></div></article>
+   <article class="use reveal"><span>02</span><div><h3>Technology due diligence</h3><p>Build an evidence-backed view of a technology estate to support deeper investigation and decision making.</p></div></article>
+   <article class="use reveal"><span>03</span><div><h3>Modernisation planning</h3><p>Identify dependencies, constraints and priorities before committing to transformation.</p></div></article>
+   <article class="use reveal"><span>04</span><div><h3>Enterprise AI readiness</h3><p>Understand whether technology, data and engineering practices are ready to support responsible AI adoption.</p></div></article>
+   <article class="use reveal"><span>05</span><div><h3>Engineering effectiveness</h3><p>Use evidence across code, delivery and operations to identify where engineering can become more effective.</p></div></article>
+   <article class="use reveal"><span>06</span><div><h3>Technology risk & assurance</h3><p>Surface areas requiring deeper attention and provide traceable evidence for expert review.</p></div></article>
+  </div>
+ </div>
+</section>
+
+
+<section class="ma">
+ <div class="container ma-grid">
+  <div class="reveal">
+   <p class="eyebrow">A high-value use case</p>
+   <h2 class="section-title">Know what you are buying.<br>Know what to do with it.</h2>
+   <p class="lead" style="margin-top:25px">For acquisitive businesses and investment teams, technology complexity can remain hidden until after a transaction. Mind Machine can support a deeper, evidence-led understanding of the estate before and after acquisition.</p>
+  </div>
+  <div class="ma-flow reveal">
+   <div class="ma-step"><span>01</span><div><h3>Understand</h3><p>Build a structured view of applications, architecture, engineering evidence and dependencies.</p></div></div>
+   <div class="ma-step"><span>02</span><div><h3>Investigate</h3><p>Surface risks, strengths, duplication and areas that warrant deeper expert diligence.</p></div></div>
+   <div class="ma-step"><span>03</span><div><h3>Decide</h3><p>Turn technical findings into decision support for leaders, investors and technology teams.</p></div></div>
+   <div class="ma-step"><span>04</span><div><h3>Integrate & modernise</h3><p>Use the evidence base to inform rationalisation, integration and transformation priorities.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="culture">
+ <div class="container culture-grid">
+  <div class="reveal">
+   <p class="eyebrow">The company we want to build</p>
+   <h2 class="section-title">A different kind of<br>technology company.</h2>
+   <p class="lead" style="margin-top:25px">We believe exceptional outcomes come from exceptional people working in the right environment. Technology should amplify expertise, not diminish it.</p>
+  </div>
+  <div class="values reveal">
+   <div class="value"><small>01 / PEOPLE</small><h3>Expertise matters</h3><p>Create an environment where talented people can do meaningful, high-quality work.</p></div>
+   <div class="value"><small>02 / CLIENTS</small><h3>Value before utilisation</h3><p>Measure success by the outcome created for the client, not by how many people we can deploy.</p></div>
+   <div class="value"><small>03 / TECHNOLOGY</small><h3>Amplify human judgement</h3><p>Use machines for scale and speed while keeping experienced minds responsible for context and judgement.</p></div>
+   <div class="value"><small>04 / TRUST</small><h3>Be willing to say “not us”</h3><p>Long-term trust requires independent advice, including when another approach is the better answer.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="quote">
+ <div class="container reveal">
+  <p class="eyebrow">Mind + Machine</p>
+  <blockquote>Machine for scale.<br><span>Mind for context and judgement.</span></blockquote>
+ </div>
+</section>
+
+<section class="contact" id="contact">
+ <div class="container contact-grid">
+  <div class="reveal"><p class="eyebrow">Start a conversation</p><h2 class="section-title">Start with<br>the problem.</h2><p class="lead">Tell us what you are trying to understand, change or accelerate. We will start there — not with a predetermined product, platform or team.</p></div>
+  <form id="form" class="reveal">
+   <div class="field"><label for="name">Name</label><input id="name" required autocomplete="name"></div>
+   <div class="field"><label for="email">Work email</label><input id="email" type="email" required autocomplete="email"></div>
+   <div class="field"><label for="inquiry">What are you trying to solve?</label><textarea id="inquiry" required></textarea></div>
+   <button class="submit" type="submit">Start a conversation →</button>
+   <p class="form-note" id="note">Thank you. Connect this form to your CRM or form endpoint before production launch.</p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer><div class="container foot"><span>MINDMACHINE.IO</span><span>© <span id="year"></span> Mind Machine. All rights reserved.</span></div></footer>
+
+<script>
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>35),{passive:true});
+const hamb=document.getElementById('hamb'),mobile=document.getElementById('mobile');
+hamb.onclick=()=>{const o=mobile.classList.toggle('open');hamb.setAttribute('aria-expanded',o)};
+mobile.querySelectorAll('a').forEach(a=>a.onclick=()=>mobile.classList.remove('open'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});
+document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+document.getElementById('form').onsubmit=e=>{e.preventDefault();document.getElementById('note').style.display='block'};
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
