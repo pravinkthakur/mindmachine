@@ -1,586 +1,292 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MINDMACHINE.IO — Enterprise Technology Intelligence</title>
-<meta name="description" content="Mind Machine combines exceptional engineering minds, secure orchestration and technology-intelligence to turn fragmented systems of record into evidence, judgement and action.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MindMachine.io — Home</title>
+<meta name="description" content="MindMachine helps organisations understand the technology estate they actually have — then decide, with evidence, what to do next.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&amp;family=Inter:wght@300..700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --ivory:#f3efe6; --paper:#faf8f2; --sand:#ddd5c8; --stone:#a59e92;
-  --ink:#12191d; --ink2:#1c262b; --slate:#4f5a5e; --line:rgba(18,25,29,.14);
-  --white:#fff; --max:1320px; --serif:"Playfair Display",Georgia,serif;
-  --sans:"Inter",Arial,sans-serif; --mono:"DM Mono",monospace;
+
+body{margin:0;background:#F6F3EC}
+a{color:#087063}a:hover{color:#0E1A2B}
+.mm{container-type:inline-size}
+.mm *{box-sizing:border-box}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 40px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.navlinks{display:flex;gap:32px;align-items:center}
+.hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:center}
+.h1{font-size:76px;line-height:1.02}
+.h2{font-size:52px;line-height:1.08}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
+.sec{padding:112px 0}
+.ctas{display:flex;gap:16px;flex-wrap:wrap}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:8px;font-weight:600;font-size:16px;text-decoration:none}
+@container (max-width: 900px){
+ .hero,.split,.g2{grid-template-columns:minmax(0,1fr);gap:40px}
+ .g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .h1{font-size:56px}
+ .navlinks .lnk{display:none}
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none} button,input,textarea{font:inherit}
-.container{width:min(calc(100% - 40px),var(--max));margin:auto}
-.serif{font-family:var(--serif)}
-.mono{font-family:var(--mono)}
-.eyebrow{font:500 .68rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:24px}
-.eyebrow:before{content:"";width:30px;height:1px;background:currentColor}
-.display{font:400 clamp(2.8rem,6vw,6rem)/.98 var(--serif);letter-spacing:-.045em}
-.section-title{font:400 clamp(2.4rem,5vw,4.7rem)/1.03 var(--serif);letter-spacing:-.035em}
-.lead{font-size:clamp(1.05rem,1.8vw,1.35rem);color:#5d615f;max-width:720px}
-.reveal{opacity:0;transform:translateY(24px);transition:.75s ease}
-.reveal.on{opacity:1;transform:none}
-.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid currentColor;padding:11px 16px;font:500 .67rem var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
-
-
-.brand-logo{width:42px;height:49px;display:block;color:inherit;flex:0 0 auto}
-.hero-brandmark{width:min(34vw,310px);height:auto;color:#e7c792;opacity:.95;filter:drop-shadow(0 0 26px rgba(231,199,146,.12))}
-.hero-logo-art{position:absolute;right:8%;top:50%;transform:translateY(-43%);z-index:2;pointer-events:none}
-.section-mark{width:78px;height:auto;color:var(--ink);opacity:.9}
-.dark-mark{color:var(--ivory)}
-@media(max-width:900px){.hero-logo-art{right:-3%;opacity:.16}.hero-brandmark{width:45vw}}
-
-/* NAV */
-header{position:fixed;inset:0 0 auto;z-index:50;transition:.3s}
-header.scrolled{background:rgba(250,248,242,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-nav{height:82px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:12px;color:white}
-header.scrolled .brand,header.scrolled .navlinks,header.scrolled .hamb{color:var(--ink)}
-.mark{width:38px;height:38px;border:1.5px solid currentColor;transform:rotate(45deg);display:grid;place-items:center}
-.mark span{font:600 17px var(--serif);transform:rotate(-45deg)}
-.brand b{font:500 .92rem var(--serif);letter-spacing:.09em}
-.navlinks{display:none;color:white;align-items:center;gap:28px;font-size:.76rem}
-.navlinks a{opacity:.78}.navlinks a:hover{opacity:1}
-.navcta{border:1px solid currentColor;padding:10px 17px}
-.hamb{border:0;background:none;color:white;width:42px}.hamb i{display:block;width:24px;height:1px;background:currentColor;margin:6px auto}
-.mobile{display:none;background:var(--paper);padding:22px;border-top:1px solid var(--line)}
-.mobile.open{display:grid;gap:18px}
-
-/* HERO */
-.hero{min-height:100svh;background:linear-gradient(120deg,#10171a,#20292d 55%,#353633);color:white;position:relative;overflow:hidden;display:flex;align-items:center}
-.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(#000,transparent 92%)}
-.hero-orbit{position:absolute;width:min(72vw,900px);aspect-ratio:1;right:-25vw;top:5%;border:1px solid rgba(255,255,255,.08);transform:rotate(45deg)}
-.hero-orbit:before,.hero-orbit:after{content:"";position:absolute;inset:15%;border:1px solid rgba(255,255,255,.06)}
-.hero-orbit:after{inset:31%}
-.hero-inner{position:relative;z-index:2;padding:130px 0 70px}
-.hero .eyebrow{color:#b9b6ae}
-.hero h1{max-width:1050px}
-.hero h1 em{font-style:normal;color:#aaa99f}
-.hero-copy{max-width:680px;margin-top:34px;font-size:clamp(1.08rem,2vw,1.32rem);color:rgba(255,255,255,.72)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
-.btn{display:inline-flex;align-items:center;gap:18px;padding:14px 21px;border:1px solid rgba(255,255,255,.55);font:500 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;transition:.25s}
-.btn:after{content:"→"}.btn:hover{background:white;color:var(--ink)}
-.hero-proof{margin-top:80px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16);display:grid;grid-template-columns:1fr;gap:20px;max-width:920px}
-.hero-proof small{display:block;color:#8f9594;font:400 .63rem var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
-.hero-proof span{font-size:.9rem;color:#d8d8d3}
-
-/* PROBLEM */
-.problem{padding:120px 0;background:var(--ivory)}
-.split{display:grid;gap:60px}
-.problem-copy p{margin-top:28px}
-.system-strip{margin-top:65px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr}
-.system{padding:23px 10px;border-right:1px solid var(--line);font:400 .66rem var(--mono);text-transform:uppercase;letter-spacing:.08em}
-.system:nth-child(even){border-right:0}
-.system strong{display:block;font:400 1.4rem var(--serif);text-transform:none;letter-spacing:0;margin-top:7px}
-.quote{padding:110px 0;background:var(--ink);color:white}
-.quote blockquote{font:400 clamp(2.3rem,5.4vw,5.4rem)/1.1 var(--serif);max-width:1120px;letter-spacing:-.035em}
-.quote blockquote span{color:#979990}
-
-
-/* PROPOSITION */
-.proposition{padding:120px 0;background:var(--paper)}
-.prop-head{display:grid;gap:34px;margin-bottom:65px}
-.prop-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-.prop-card{background:var(--paper);padding:34px;min-height:275px;display:flex;flex-direction:column}
-.prop-card .no{font:.62rem var(--mono);color:#858982}
-.prop-card h3{font:400 1.55rem var(--serif);margin-top:auto;margin-bottom:13px}
-.prop-card p{font-size:.84rem;color:#666a66}
-.prop-principle{margin-top:38px;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:12px}
-.prop-principle strong{font:400 clamp(1.45rem,3vw,2.3rem) var(--serif)}
-.prop-principle span{font-size:.85rem;color:#686b67;max-width:760px}
-
-/* SPECTRUM */
-.spectrum{padding:120px 0;background:#d9d2c6}
-.spectrum-bar{margin-top:55px;position:relative;padding-top:35px}
-.spectrum-line{height:1px;background:rgba(18,25,29,.35);position:relative}
-.spectrum-line:before,.spectrum-line:after{content:"";position:absolute;top:-4px;width:9px;height:9px;border:1px solid var(--ink);border-radius:50%;background:#d9d2c6}
-.spectrum-line:before{left:0}.spectrum-line:after{right:0}
-.spectrum-labels{display:flex;justify-content:space-between;margin-top:15px;font:.62rem var(--mono);text-transform:uppercase;letter-spacing:.08em}
-.spectrum-copy{display:grid;gap:25px;margin-top:50px}
-.spectrum-copy article{border-top:1px solid rgba(18,25,29,.18);padding-top:18px}
-.spectrum-copy h3{font:400 1.3rem var(--serif);margin-bottom:8px}.spectrum-copy p{font-size:.82rem;color:#60645f}
-
-/* M&A */
-.ma{padding:120px 0;background:var(--paper)}
-.ma-grid{display:grid;gap:65px}
-.ma-flow{border-top:1px solid var(--line)}
-.ma-step{padding:23px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:42px 1fr}
-.ma-step span{font:.6rem var(--mono);color:#858982}.ma-step h3{font:400 1.25rem var(--serif)}
-.ma-step p{font-size:.8rem;color:#686c68;margin-top:5px}
-
-/* CULTURE */
-.culture{padding:120px 0;background:var(--ivory)}
-.culture-grid{display:grid;gap:65px}
-.values{display:grid;gap:0;border-top:1px solid var(--line)}
-.value{padding:23px 0;border-bottom:1px solid var(--line)}
-.value small{font:.58rem var(--mono);color:#898c86}.value h3{font:400 1.25rem var(--serif);margin:8px 0}.value p{font-size:.82rem;color:#676a65}
-
-/* ARCHITECTURE */
-.architecture{padding:120px 0;background:var(--paper)}
-.arch-head{display:grid;gap:25px;margin-bottom:65px}
-.pipeline{display:grid;gap:12px;position:relative}
-.stage{border:1px solid var(--line);padding:28px;background:#f7f4ed;min-height:165px;position:relative;overflow:hidden}
-.stage-num{font:400 .63rem var(--mono);color:#898b87;letter-spacing:.1em}
-.stage h3{font:400 1.35rem var(--serif);margin:32px 0 8px}
-.stage p{font-size:.82rem;color:#666b68}
-.stage.active{background:var(--ink2);color:white}.stage.active p{color:#b9bfbd}
-.arrow{display:none}
-.flow-note{margin-top:25px;font:.72rem var(--mono);color:#747874}
-
-/* intelligence */
-.intelligence{background:#d9d2c6;padding:120px 0}
-.intelligence-intro{display:grid;gap:55px;align-items:end}
-.intelligence-label{font:500 .68rem var(--mono);letter-spacing:.14em;text-transform:uppercase}
-.intelligence-copy p{margin-top:25px;max-width:700px;color:#505653}
-.product-shell{margin-top:70px;background:#11191d;border:1px solid rgba(0,0,0,.3);box-shadow:0 35px 90px rgba(23,25,25,.18);color:white;overflow:hidden}
-.shell-top{height:50px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;padding:0 18px;font:400 .62rem var(--mono);color:#8e999a}
-.shell-dots{display:flex;gap:6px}.shell-dots i{width:6px;height:6px;border-radius:50%;background:#667073}
-.shell-body{display:grid;grid-template-columns:1fr}
-.sidebar{display:none;border-right:1px solid rgba(255,255,255,.09);padding:24px 17px}
-.sidebar div{padding:9px;font:.63rem var(--mono);color:#788386}.sidebar .selected{color:white;background:rgba(255,255,255,.06)}
-.dashboard{padding:24px}
-.dash-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}.dash-title h3{font:400 1.5rem var(--serif)}
-.dash-title span{font:.6rem var(--mono);color:#849091}
-.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.metric{border:1px solid rgba(255,255,255,.1);padding:17px;min-height:110px}
-.metric small{font:.57rem var(--mono);color:#778386;text-transform:uppercase;letter-spacing:.08em}
-.metric b{display:block;font:400 2rem var(--serif);margin-top:12px}
-.metric p{font-size:.66rem;color:#929b9a}
-.graph-panel{margin-top:9px;border:1px solid rgba(255,255,255,.1);height:260px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.04),transparent 50%)}
-.node{position:absolute;width:9px;height:9px;border:1px solid #bdc3bf;border-radius:50%;background:#11191d;box-shadow:0 0 0 4px rgba(255,255,255,.03)}
-.edge{position:absolute;height:1px;background:rgba(255,255,255,.17);transform-origin:left center}
-.n1{left:18%;top:30%}.n2{left:42%;top:18%}.n3{left:65%;top:34%}.n4{left:78%;top:66%}.n5{left:48%;top:72%}.n6{left:22%;top:68%}
-.e1{left:19%;top:31%;width:25%;transform:rotate(-14deg)}.e2{left:43%;top:20%;width:25%;transform:rotate(17deg)}
-.e3{left:65%;top:36%;width:25%;transform:rotate(46deg)}.e4{left:49%;top:72%;width:31%;transform:rotate(-7deg)}
-.e5{left:23%;top:68%;width:27%;transform:rotate(4deg)}.e6{left:19%;top:32%;width:38%;transform:rotate(64deg)}
-.graph-caption{position:absolute;left:16px;bottom:14px;font:.57rem var(--mono);color:#738083;text-transform:uppercase;letter-spacing:.08em}
-
-/* CAPABILITIES */
-.intelligence{padding:120px 0;background:var(--paper)}
-.intro-row{display:grid;gap:30px;margin-bottom:65px}
-.cap-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
-.cap{background:var(--paper);padding:31px;min-height:250px;transition:.25s}
-.cap:hover{background:var(--ivory)}
-.cap .icon{font:400 .7rem var(--mono);color:#858982;margin-bottom:55px}
-.cap h3{font:400 1.45rem var(--serif);margin-bottom:13px}.cap p{font-size:.85rem;color:#666a66}
-
-/* ASSESSMENT */
-.assessment{padding:120px 0;background:#20282c;color:white}
-.assess-head{display:grid;gap:35px;margin-bottom:65px}.assess-head .lead{color:#abb2b0}
-.pillars{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.13);border-left:1px solid rgba(255,255,255,.13)}
-.pillar{min-height:115px;padding:18px;border-right:1px solid rgba(255,255,255,.13);border-bottom:1px solid rgba(255,255,255,.13)}
-.pillar small{font:.55rem var(--mono);color:#687476}.pillar p{margin-top:20px;font-size:.8rem;color:#d4d6d2}
-.checks{margin-top:45px;display:flex;align-items:baseline;gap:18px}.checks strong{font:400 clamp(3rem,8vw,7rem) var(--serif)}.checks span{max-width:300px;color:#969f9d;font-size:.8rem}
-
-/* SERVICES */
-.services{padding:120px 0;background:var(--ivory)}
-.service-grid{margin-top:60px;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-.service{background:var(--ivory);padding:35px;min-height:330px;display:flex;flex-direction:column}
-.service .no{font:.63rem var(--mono);color:#85847d}.service h3{font:400 1.7rem var(--serif);margin-top:auto;margin-bottom:15px}
-.service p{font-size:.85rem;color:#66655f}.service ul{list-style:none;margin-top:20px;font-size:.77rem;color:#77756e}
-.service li{margin:6px 0}.service li:before{content:"— ";}
-
-/* PRODUCTS */
-.products{padding:120px 0;background:var(--paper)}
-.product-grid{display:grid;gap:18px;margin-top:60px}
-.product{border:1px solid var(--line);padding:36px;min-height:390px;position:relative;overflow:hidden}
-.product:after{content:"";position:absolute;width:180px;height:180px;border:1px solid var(--line);right:-90px;bottom:-90px;transform:rotate(45deg)}
-.product .tag{font:.6rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#777b77}
-.product h3{font:400 2rem var(--serif);margin-top:80px}.product p{margin-top:15px;max-width:340px;color:#646864;font-size:.9rem}
-.product.featured{background:var(--ink);color:white}.product.featured p{color:#abb1af}.product.featured:after{border-color:rgba(255,255,255,.13)}
-
-/* SECURITY */
-.security{padding:120px 0;background:#d9d2c6}
-.security-grid{display:grid;gap:55px}
-.guardrails{display:grid;gap:0;border-top:1px solid rgba(0,0,0,.18)}
-.guard{padding:22px 0;border-bottom:1px solid rgba(0,0,0,.18);display:grid;grid-template-columns:42px 1fr;gap:10px}
-.guard b{font:400 .67rem var(--mono)}.guard strong{font-weight:500;font-size:.9rem}.guard p{font-size:.8rem;color:#64655f;margin-top:5px}
-
-/* USE CASES */
-.usecases{padding:120px 0;background:var(--paper)}
-.use-grid{display:grid;margin-top:55px;border-top:1px solid var(--line)}
-.use{padding:25px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:45px 1fr;gap:12px}
-.use h3{font:400 1.3rem var(--serif)}.use p{font-size:.82rem;color:#686c68;margin-top:5px}.use span{font:.6rem var(--mono);color:#888c87}
-
-/* CONTACT */
-.contact{padding:120px 0;background:#11191d;color:white}
-.contact-grid{display:grid;gap:65px}.contact .lead{color:#aeb5b2;margin-top:25px}
-form{display:grid;gap:25px}.field label{display:block;font:.6rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#87908f;margin-bottom:8px}
-.field input,.field textarea{width:100%;border:0;border-bottom:1px solid rgba(255,255,255,.28);background:transparent;color:white;padding:11px 0;outline:0}
-.field textarea{min-height:90px;resize:vertical}.field input:focus,.field textarea:focus{border-color:white}
-.submit{width:max-content;background:none;color:white;border:1px solid rgba(255,255,255,.5);padding:13px 20px;font:.65rem var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
-.form-note{font-size:.72rem;color:#7f8a88;display:none}
-footer{background:#0b1114;color:#77817f;padding:30px 0;font:.62rem var(--mono)}
-.foot{display:flex;flex-direction:column;gap:12px}
-
-/* RESPONSIVE */
-@media(min-width:720px){
- .container{width:min(calc(100% - 72px),var(--max))}
- .navlinks{display:flex}.hamb{display:none}
- .hero-proof{grid-template-columns:repeat(3,1fr)}
- .split{grid-template-columns:.8fr 1.2fr;gap:100px}
- .system-strip{grid-template-columns:repeat(4,1fr)} .system:nth-child(even){border-right:1px solid var(--line)} .system:last-child{border-right:0}
- .arch-head,.intro-row,.assess-head,.intelligence-intro,.security-grid,.contact-grid,.prop-head,.ma-grid,.culture-grid{grid-template-columns:1fr 1fr;gap:80px}
- .prop-grid{grid-template-columns:repeat(3,1fr)}
- .spectrum-copy{grid-template-columns:repeat(3,1fr);gap:35px}
- .pipeline{grid-template-columns:repeat(5,1fr);gap:0}
- .stage{border-right:0}.stage:last-child{border-right:1px solid var(--line)}
- .shell-body{grid-template-columns:150px 1fr}.sidebar{display:block}
- .metrics{grid-template-columns:repeat(4,1fr)}
- .cap-grid{grid-template-columns:repeat(3,1fr)}
- .pillars{grid-template-columns:repeat(4,1fr)}
- .service-grid{grid-template-columns:repeat(4,1fr)}
- .product-grid{grid-template-columns:repeat(3,1fr)}
- .use-grid{grid-template-columns:1fr 1fr;border-left:1px solid var(--line)} .use{padding:28px;border-right:1px solid var(--line)}
- .foot{flex-direction:row;justify-content:space-between}
+@container (max-width: 600px){
+ .wrap{padding:0 20px}
+ .g3,.g4{grid-template-columns:minmax(0,1fr)}
+ .h1{font-size:42px;line-height:1.06}
+ .h2{font-size:36px;line-height:1.12}
+ .sec{padding:72px 0}
+ .heroart{display:none}
+ .navlinks .navcta{display:none}
 }
-@media(min-width:1100px){
- .hero-inner{padding-top:150px}
- .problem,.proposition,.spectrum,.architecture,.intelligence,.intelligence,.assessment,.services,.products,.security,.usecases,.ma,.culture,.contact{padding-top:150px;padding-bottom:150px}
- .cap-grid{grid-template-columns:repeat(4,1fr)}
- .pillars{grid-template-columns:repeat(6,1fr)}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+
+html{scroll-behavior:smooth}body{min-width:320px}.btn{transition:opacity .2s ease,transform .2s ease}.btn:hover{opacity:.92;transform:translateY(-1px)}input:focus,textarea:focus{outline:2px solid #2FD4BB;outline-offset:2px}
 </style>
 </head>
 <body>
-<header id="header">
- <nav class="container">
-  <a class="brand" href="#home"><svg class="brand-logo" viewBox="0 0 140 164" aria-label="Mind Machine logo" role="img" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
-  <path d="M31 31 L70 8 L109 31"/>
-  <path d="M20 52 L70 82 L120 52 L120 116"/>
-  <path d="M20 52 L20 116"/>
-  <path d="M42 77 L70 94 L98 77 L98 128"/>
-  <path d="M42 77 L42 128"/>
-  <path d="M70 94 L70 139"/>
-  <path d="M35 137 L70 158 L105 137"/>
-</g>
-</svg><b>MINDMACHINE.IO</b></a>
-  <div class="navlinks">
-   <a href="#who">Who We Are</a><a href="#how">How It Works</a><a href="#intelligence">Technology Intelligence</a>
-   <a href="#services">Services</a><a href="#products">Products</a><a class="navcta" href="#contact">Contact</a>
-  </div>
-  <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
- </nav>
- <div class="mobile" id="mobile"><a href="#who">Who We Are</a><a href="#how">How It Works</a><a href="#intelligence">Technology Intelligence</a><a href="#services">Services</a><a href="#products">Products</a><a href="#contact">Contact</a></div>
+<div class="mm" style="width:100%;background:#F6F3EC;color:#0E1A2B;font-family:'Inter', system-ui, sans-serif;font-size:17px;line-height:1.6">
+<header style="background:#0E1A2B;border-bottom:1px solid #22324A">
+<div class="wrap nav" style="height:80px">
+<a aria-label="MindMachine.io home" href="#top" style="display:flex;align-items:center"><img alt="MindMachine.io" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDQgNjQiIHdpZHRoPSIzMDQiIGhlaWdodD0iNjQiPjxwb2x5Z29uIHBvaW50cz0iNiw2MCA2LDE0IDMyLDMwIDMyLDQyIDE2LDMyIDE2LDYwIiBmaWxsPSIjRjZGM0VDIj48L3BvbHlnb24+PHBvbHlnb24gcG9pbnRzPSIzMiwzMCA1OCwxNCA1OCw2MCA0OCw2MCA0OCwzMiAzMiw0MiIgZmlsbD0iIzJGRDRCQiI+PC9wb2x5Z29uPjxwYXRoIGQ9Ik04Mi41MDQ4ODI4MTI1IDQzLjBIODQuNDk3MDcwMzEyNVYzMi40Njc3NzM0Mzc1Qzg0LjQ5NzA3MDMxMjUgMjkuNzU3ODEyNSA4Ni4zNTc0MjE4NzUgMjguMTc1NzgxMjUgODguNTU0Njg3NSAyOC4xNzU3ODEyNUM5MC42MzQ3NjU2MjUgMjguMTc1NzgxMjUgOTIuMDk5NjA5Mzc1IDI5LjU4MjAzMTI1IDkyLjA5OTYwOTM3NSAzMS44NTI1MzkwNjI1VjQzLjBIOTQuMDc3MTQ4NDM3NVYzMi4yMDQxMDE1NjI1Qzk0LjA3NzE0ODQzNzUgMjkuNzcyNDYwOTM3NSA5NS42ODg0NzY1NjI1IDI4LjE3NTc4MTI1IDk4LjA0Njg3NSAyOC4xNzU3ODEyNUMxMDAuMDk3NjU2MjUgMjguMTc1NzgxMjUgMTAxLjY3OTY4NzUgMjkuMzkxNjAxNTYyNSAxMDEuNjc5Njg3NSAzMi4wMjgzMjAzMTI1VjQzLjBIMTAzLjY3MTg3NVYzMS45Njk3MjY1NjI1QzEwMy42NzE4NzUgMjguMjkyOTY4NzUgMTAxLjQ4OTI1NzgxMjUgMjYuMzQ0NzI2NTYyNSA5OC41NzQyMTg3NSAyNi4zNDQ3MjY1NjI1Qzk2LjIwMTE3MTg3NSAyNi4zNDQ3MjY1NjI1IDk0LjIwODk4NDM3NSAyNy42NDg0Mzc1IDkzLjQzMjYxNzE4NzUgMjkuODE2NDA2MjVDOTIuODYxMzI4MTI1IDI3LjY5MjM4MjgxMjUgOTEuMzA4NTkzNzUgMjYuMzQ0NzI2NTYyNSA4OS4xMjU5NzY1NjI1IDI2LjM0NDcyNjU2MjVDODcuMTc3NzM0Mzc1IDI2LjM0NDcyNjU2MjUgODUuMjczNDM3NSAyNy4zOTk0MTQwNjI1IDg0LjQ1MzEyNSAyOS42NTUyNzM0Mzc1TDg0LjQzODQ3NjU2MjUgMjYuNjIzMDQ2ODc1SDgyLjUwNDg4MjgxMjVaIE0xMDguMDgxNjQwNjI1IDQzLjBIMTEwLjA3MzgyODEyNVYyNi42MjMwNDY4NzVIMTA4LjA4MTY0MDYyNVpNMTA5LjA3NzczNDM3NSAyMy41OTA4MjAzMTI1QzEwOS44ODMzOTg0Mzc1IDIzLjU5MDgyMDMxMjUgMTEwLjU0MjU3ODEyNSAyMi45NzU1ODU5Mzc1IDExMC41NDI1NzgxMjUgMjIuMTk5MjE4NzVDMTEwLjU0MjU3ODEyNSAyMS40MjI4NTE1NjI1IDEwOS44ODMzOTg0Mzc1IDIwLjgwNzYxNzE4NzUgMTA5LjA3NzczNDM3NSAyMC44MDc2MTcxODc1QzEwOC4yODY3MTg3NSAyMC44MDc2MTcxODc1IDEwNy42Mjc1MzkwNjI1IDIxLjQyMjg1MTU2MjUgMTA3LjYyNzUzOTA2MjUgMjIuMTk5MjE4NzVDMTA3LjYyNzUzOTA2MjUgMjIuOTc1NTg1OTM3NSAxMDguMjg2NzE4NzUgMjMuNTkwODIwMzEyNSAxMDkuMDc3NzM0Mzc1IDIzLjU5MDgyMDMxMjVaIE0xMTYuNDc1NzgxMjUwMDAwMDEgMzIuNzkwMDM5MDYyNUMxMTYuNDc1NzgxMjUwMDAwMDEgMjkuOTc3NTM5MDYyNSAxMTguNDA5Mzc1MDAwMDAwMDEgMjguMjE5NzI2NTYyNSAxMjEuMDAyMTQ4NDM3NTAwMDEgMjguMjE5NzI2NTYyNUMxMjMuNTIxNjc5Njg3NTAwMDEgMjguMjE5NzI2NTYyNSAxMjUuMTQ3NjU2MjUwMDAwMDEgMjkuODc1IDEyNS4xNDc2NTYyNTAwMDAwMSAzMi41NTU2NjQwNjI1VjQzLjBIMTI3LjEyNTE5NTMxMjUwMDAxVjMyLjQwOTE3OTY4NzVDMTI3LjEyNTE5NTMxMjUwMDAxIDI4LjUyNzM0Mzc1IDEyNC44NTQ2ODc1MDAwMDAwMSAyNi40MDMzMjAzMTI1IDEyMS41Mjk0OTIxODc1MDAwMSAyNi40MDMzMjAzMTI1QzExOS4yODgyODEyNTAwMDAwMSAyNi40MDMzMjAzMTI1IDExNy40MTMyODEyNTAwMDAwMSAyNy4zNzAxMTcxODc1IDExNi40MTcxODc1MDAwMDAwMSAyOS42NDA2MjVMMTE2LjQwMjUzOTA2MjUwMDAxIDI2LjYyMzA0Njg3NUgxMTQuNDgzNTkzNzUwMDAwMDFWNDMuMEgxMTYuNDc1NzgxMjUwMDAwMDFaIE0xMzcuMzk0MzM1OTM3NTAwMDIgNDMuMzUxNTYyNUMxNDAuMzUzMzIwMzEyNTAwMDIgNDMuMzUxNTYyNSAxNDEuNzc0MjE4NzUwMDAwMDIgNDEuNDYxOTE0MDYyNSAxNDIuNDMzMzk4NDM3NTAwMDIgMzkuOTM4NDc2NTYyNUgxNDIuNjUzMTI1MDAwMDAwMDJWNDMuMEgxNDQuNTcyMDcwMzEyNTAwMDJWMjEuMTczODI4MTI1SDE0Mi41OTQ1MzEyNTAwMDAwMlYyOS43NzI0NjA5Mzc1SDE0Mi40MzMzOTg0Mzc1MDAwMkMxNDEuNzg4ODY3MTg3NTAwMDIgMjguMjc4MzIwMzEyNSAxNDAuNDExOTE0MDYyNTAwMDIgMjYuNDAzMzIwMzEyNSAxMzcuNDA4OTg0Mzc1MDAwMDIgMjYuNDAzMzIwMzEyNUMxMzMuNDA5OTYwOTM3NTAwMDIgMjYuNDAzMzIwMzEyNSAxMzAuNjg1MzUxNTYyNTAwMDIgMjkuODAxNzU3ODEyNSAxMzAuNjg1MzUxNTYyNTAwMDIgMzQuODU1NDY4NzVDMTMwLjY4NTM1MTU2MjUwMDAyIDM5Ljk1MzEyNSAxMzMuMzk1MzEyNTAwMDAwMDIgNDMuMzUxNTYyNSAxMzcuMzk0MzM1OTM3NTAwMDIgNDMuMzUxNTYyNVpNMTM3LjY1ODAwNzgxMjUwMDAyIDQxLjU0OTgwNDY4NzVDMTM0LjQ2NDY0ODQzNzUwMDAyIDQxLjU0OTgwNDY4NzUgMTMyLjY5MjE4NzUwMDAwMDAyIDM4LjYwNTQ2ODc1IDEzMi42OTIxODc1MDAwMDAwMiAzNC44NDA4MjAzMTI1QzEzMi42OTIxODc1MDAwMDAwMiAzMS4wOTA4MjAzMTI1IDEzNC40NTAwMDAwMDAwMDAwMiAyOC4yMDUwNzgxMjUgMTM3LjY1ODAwNzgxMjUwMDAyIDI4LjIwNTA3ODEyNUMxNDAuODIyMDcwMzEyNTAwMDIgMjguMjA1MDc4MTI1IDE0Mi42MDkxNzk2ODc1MDAwMiAzMC45NDQzMzU5Mzc1IDE0Mi42MDkxNzk2ODc1MDAwMiAzNC44NDA4MjAzMTI1QzE0Mi42MDkxNzk2ODc1MDAwMiAzOC43NTE5NTMxMjUgMTQwLjgwNzQyMTg3NTAwMDAyIDQxLjU0OTgwNDY4NzUgMTM3LjY1ODAwNzgxMjUwMDAyIDQxLjU0OTgwNDY4NzVaIiBmaWxsPSIjRjZGM0VDIj48L3BhdGg+PHBhdGggZD0iTTE0OC41MTMwODU5Mzc1MDAwMiA0My4wSDE1Mi4zMjE2Nzk2ODc1MDAwMlYzMi45NjU4MjAzMTI1QzE1Mi4zMjE2Nzk2ODc1MDAwMiAzMC43ODMyMDMxMjUgMTUzLjY5ODYzMjgxMjUwMDAyIDI5LjYxMTMyODEyNSAxNTUuMzY4NTU0Njg3NTAwMDIgMjkuNjExMzI4MTI1QzE1Ni45Nzk4ODI4MTI1MDAwMiAyOS42MTEzMjgxMjUgMTU4LjEzNzEwOTM3NTAwMDAyIDMwLjY5NTMxMjUgMTU4LjEzNzEwOTM3NTAwMDAyIDMyLjM2NTIzNDM3NVY0My4wSDE2MS44NTc4MTI1MDAwMDAwMlYzMi43MTY3OTY4NzVDMTYxLjg1NzgxMjUwMDAwMDAyIDMwLjg4NTc0MjE4NzUgMTYyLjk4NTc0MjE4NzUwMDAyIDI5LjYxMTMyODEyNSAxNjQuODMxNDQ1MzEyNTAwMDIgMjkuNjExMzI4MTI1QzE2Ni4zOTg4MjgxMjUwMDAwMiAyOS42MTEzMjgxMjUgMTY3LjY1ODU5Mzc1MDAwMDAyIDMwLjUxOTUzMTI1IDE2Ny42NTg1OTM3NTAwMDAwMiAzMi41NDEwMTU2MjVWNDMuMEgxNzEuNDgxODM1OTM3NTAwMDJWMzEuOTU1MDc4MTI1QzE3MS40ODE4MzU5Mzc1MDAwMiAyOC4zMjIyNjU2MjUgMTY5LjIyNTk3NjU2MjUwMDAyIDI2LjM1OTM3NSAxNjYuMjgxNjQwNjI1MDAwMDIgMjYuMzU5Mzc1QzE2My45ODE4MzU5Mzc1MDAwMiAyNi4zNTkzNzUgMTYxLjkzMTA1NDY4NzUwMDAyIDI3LjU2MDU0Njg3NSAxNjEuMDUyMTQ4NDM3NTAwMDIgMjkuOTE4OTQ1MzEyNUMxNjAuMzQ5MDIzNDM3NTAwMDIgMjcuNTg5ODQzNzUgMTU4Ljk1NzQyMTg3NTAwMDAyIDI2LjM1OTM3NSAxNTYuODQ4MDQ2ODc1MDAwMDIgMjYuMzU5Mzc1QzE1NC44OTk4MDQ2ODc1MDAwMiAyNi4zNTkzNzUgMTUzLjA1NDEwMTU2MjUwMDAyIDI3LjQxNDA2MjUgMTUyLjIwNDQ5MjE4NzUwMDAyIDI5Ljc0MzE2NDA2MjVMMTUyLjA4NzMwNDY4NzUwMDAyIDI2LjYyMzA0Njg3NUgxNDguNTEzMDg1OTM3NTAwMDJaIE0xNzkuNDk1MTE3MTg3NTAwMDMgNDMuMzM2OTE0MDYyNUMxODIuMDQzOTQ1MzEyNTAwMDMgNDMuMzM2OTE0MDYyNSAxODMuNTk2Njc5Njg3NTAwMDMgNDIuMTUwMzkwNjI1IDE4NC4zMTQ0NTMxMjUwMDAwMyA0MC43NDQxNDA2MjVIMTg0LjQ2MDkzNzUwMDAwMDAzVjQzLjBIMTg4LjEwODM5ODQzNzUwMDAzVjMyLjA1NzYxNzE4NzVDMTg4LjEwODM5ODQzNzUwMDAzIDI3LjY5MjM4MjgxMjUgMTg0LjUwNDg4MjgxMjUwMDAzIDI2LjQxNzk2ODc1IDE4MS40Mjg3MTA5Mzc1MDAwMyAyNi40MTc5Njg3NUMxNzguMTQ3NDYwOTM3NTAwMDMgMjYuNDE3OTY4NzUgMTc1LjQ1MjE0ODQzNzUwMDAzIDI3LjgwOTU3MDMxMjUgMTc0LjQ4NTM1MTU2MjUwMDAzIDMwLjY5NTMxMjVMMTc4LjAxNTYyNTAwMDAwMDAzIDMxLjQxMzA4NTkzNzVDMTc4LjQxMTEzMjgxMjUwMDAzIDMwLjMyOTEwMTU2MjUgMTc5LjUzOTA2MjUwMDAwMDAzIDI5LjM0NzY1NjI1IDE4MS40NDMzNTkzNzUwMDAwMyAyOS4zNDc2NTYyNUMxODMuMzAzNzEwOTM3NTAwMDMgMjkuMzQ3NjU2MjUgMTg0LjI5OTgwNDY4NzUwMDAzIDMwLjI4NTE1NjI1IDE4NC4yOTk4MDQ2ODc1MDAwMyAzMS44ODE4MzU5Mzc1VjMxLjk1NTA3ODEyNUMxODQuMjk5ODA0Njg3NTAwMDMgMzMuMDgzMDA3ODEyNSAxODMuMDk4NjMyODEyNTAwMDMgMzMuMTI2OTUzMTI1IDE4MC4yNTY4MzU5Mzc1MDAwMyAzMy40MzQ1NzAzMTI1QzE3Ny4wOTI3NzM0Mzc1MDAwMyAzMy43NzE0ODQzNzUgMTc0LjAxNjYwMTU2MjUwMDAzIDM0LjcwODk4NDM3NSAxNzQuMDE2NjAxNTYyNTAwMDMgMzguNDAwMzkwNjI1QzE3NC4wMTY2MDE1NjI1MDAwMyA0MS42MjMwNDY4NzUgMTc2LjM3NTAwMDAwMDAwMDAzIDQzLjMzNjkxNDA2MjUgMTc5LjQ5NTExNzE4NzUwMDAzIDQzLjMzNjkxNDA2MjVaTTE4MC40NzY1NjI1MDAwMDAwMyA0MC41MDk3NjU2MjVDMTc4Ljg2NTIzNDM3NTAwMDAzIDQwLjUwOTc2NTYyNSAxNzcuNzA4MDA3ODEyNTAwMDMgMzkuNzc3MzQzNzUgMTc3LjcwODAwNzgxMjUwMDAzIDM4LjM1NjQ0NTMxMjVDMTc3LjcwODAwNzgxMjUwMDAzIDM2Ljg2MjMwNDY4NzUgMTc4Ljk5NzA3MDMxMjUwMDAzIDM2LjIzMjQyMTg3NSAxODAuNzEwOTM3NTAwMDAwMDMgMzUuOTk4MDQ2ODc1QzE4MS42OTIzODI4MTI1MDAwMyAzNS44NjYyMTA5Mzc1IDE4My44MTY0MDYyNTAwMDAwMyAzNS42MDI1MzkwNjI1IDE4NC4zMjkxMDE1NjI1MDAwMyAzNS4xOTIzODI4MTI1VjM3LjEyNTk3NjU2MjVDMTg0LjMyOTEwMTU2MjUwMDAzIDM4Ljk0MjM4MjgxMjUgMTgyLjgyMDMxMjUwMDAwMDAzIDQwLjUwOTc2NTYyNSAxODAuNDc2NTYyNTAwMDAwMDMgNDAuNTA5NzY1NjI1WiBNMTk4LjY1NTg1OTM3NTAwMDAzIDQzLjMzNjkxNDA2MjVDMjAyLjMzMjYxNzE4NzUwMDAzIDQzLjMzNjkxNDA2MjUgMjA1LjA1NzIyNjU2MjUwMDAzIDQxLjM0NDcyNjU2MjUgMjA1Ljc2MDM1MTU2MjUwMDAzIDM4LjA3ODEyNUwyMDIuMjAwNzgxMjUwMDAwMDMgMzcuMzMxMDU0Njg3NUMyMDEuODA1MjczNDM3NTAwMDMgMzkuMTAzNTE1NjI1IDIwMC41NjAxNTYyNTAwMDAwMyA0MC4yNDYwOTM3NSAxOTguNjg1MTU2MjUwMDAwMDMgNDAuMjQ2MDkzNzVDMTk2LjAzMzc4OTA2MjUwMDAzIDQwLjI0NjA5Mzc1IDE5NC43MTU0Mjk2ODc1MDAwMyAzNy45MTY5OTIxODc1IDE5NC43MTU0Mjk2ODc1MDAwMyAzNC44ODQ3NjU2MjVDMTk0LjcxNTQyOTY4NzUwMDAzIDMxLjgyMzI0MjE4NzUgMTk2LjAzMzc4OTA2MjUwMDAzIDI5LjUwODc4OTA2MjUgMTk4LjY4NTE1NjI1MDAwMDAzIDI5LjUwODc4OTA2MjVDMjAwLjUzMDg1OTM3NTAwMDAzIDI5LjUwODc4OTA2MjUgMjAxLjc0NjY3OTY4NzUwMDAzIDMwLjYwNzQyMTg3NSAyMDIuMTU2ODM1OTM3NTAwMDMgMzIuMzA2NjQwNjI1TDIwNS43MTY0MDYyNTAwMDAwMyAzMS41NTk1NzAzMTI1QzIwNS4wMTMyODEyNTAwMDAwMyAyOC4zNjYyMTA5Mzc1IDIwMi4zMDMzMjAzMTI1MDAwMyAyNi40MTc5Njg3NSAxOTguNjU1ODU5Mzc1MDAwMDMgMjYuNDE3OTY4NzVDMTkzLjg4MDQ2ODc1MDAwMDAzIDI2LjQxNzk2ODc1IDE5MC44MzM1OTM3NTAwMDAwMyAyOS44MDE3NTc4MTI1IDE5MC44MzM1OTM3NTAwMDAwMyAzNC44OTk0MTQwNjI1QzE5MC44MzM1OTM3NTAwMDAwMyAzOS45Mzg0NzY1NjI1IDE5My44ODA0Njg3NTAwMDAwMyA0My4zMzY5MTQwNjI1IDE5OC42NTU4NTkzNzUwMDAwMyA0My4zMzY5MTQwNjI1WiBNMjEyLjIzNTU0Njg3NTAwMDA0IDMzLjQwNTI3MzQzNzVDMjEyLjIzNTU0Njg3NTAwMDA0IDMxLjAzMjIyNjU2MjUgMjEzLjcwMDM5MDYyNTAwMDA0IDI5LjY1NTI3MzQzNzUgMjE1LjczNjUyMzQzNzUwMDA0IDI5LjY1NTI3MzQzNzVDMjE3LjcyODcxMDkzNzUwMDA0IDI5LjY1NTI3MzQzNzUgMjE4LjkyOTg4MjgxMjUwMDA0IDMwLjk3MzYzMjgxMjUgMjE4LjkyOTg4MjgxMjUwMDA0IDMzLjE3MDg5ODQzNzVWNDMuMEgyMjIuNzUzMTI1MDAwMDAwMDRWMzIuNTg0OTYwOTM3NUMyMjIuNzUzMTI1MDAwMDAwMDQgMjguNjQ0NTMxMjUgMjIwLjUxMTkxNDA2MjUwMDA0IDI2LjQxNzk2ODc1IDIxNy4xNDI3NzM0Mzc1MDAwNCAyNi40MTc5Njg3NUMyMTQuODEzNjcxODc1MDAwMDQgMjYuNDE3OTY4NzUgMjEzLjE1ODM5ODQzNzUwMDA0IDI3LjUwMTk1MzEyNSAyMTIuMTc2OTUzMTI1MDAwMDQgMjkuNjU1MjczNDM3NVYyMS4xNzM4MjgxMjVIMjA4LjQyNjk1MzEyNTAwMDA0VjQzLjBIMjEyLjIzNTU0Njg3NTAwMDA0WiBNMjI2LjE5NjA5Mzc1MDAwMDA1IDQzLjBIMjMwLjAwNDY4NzUwMDAwMDA1VjI2LjYyMzA0Njg3NUgyMjYuMTk2MDkzNzUwMDAwMDVaTTIyOC4xMDAzOTA2MjUwMDAwNSAyNC4zMDg1OTM3NUMyMjkuMzE2MjEwOTM3NTAwMDUgMjQuMzA4NTkzNzUgMjMwLjMyNjk1MzEyNTAwMDA1IDIzLjM3MTA5Mzc1IDIzMC4zMjY5NTMxMjUwMDAwNSAyMi4yMTM4NjcxODc1QzIzMC4zMjY5NTMxMjUwMDAwNSAyMS4wNTY2NDA2MjUgMjI5LjMxNjIxMDkzNzUwMDA1IDIwLjEzMzc4OTA2MjUgMjI4LjEwMDM5MDYyNTAwMDA1IDIwLjEzMzc4OTA2MjVDMjI2Ljg4NDU3MDMxMjUwMDA1IDIwLjEzMzc4OTA2MjUgMjI1Ljg4ODQ3NjU2MjUwMDA1IDIxLjA1NjY0MDYyNSAyMjUuODg4NDc2NTYyNTAwMDUgMjIuMjEzODY3MTg3NUMyMjUuODg4NDc2NTYyNTAwMDUgMjMuMzcxMDkzNzUgMjI2Ljg4NDU3MDMxMjUwMDA1IDI0LjMwODU5Mzc1IDIyOC4xMDAzOTA2MjUwMDAwNSAyNC4zMDg1OTM3NVogTTIzNy4yNTYyNTAwMDAwMDAwNSAzMy40MDUyNzM0Mzc1QzIzNy4yNTYyNTAwMDAwMDAwNSAzMS4wMzIyMjY1NjI1IDIzOC43MjEwOTM3NTAwMDAwNSAyOS42NTUyNzM0Mzc1IDI0MC43NTcyMjY1NjI1MDAwNSAyOS42NTUyNzM0Mzc1QzI0Mi43NDk0MTQwNjI1MDAwNSAyOS42NTUyNzM0Mzc1IDI0My45NTA1ODU5Mzc1MDAwNSAzMC45NzM2MzI4MTI1IDI0My45NTA1ODU5Mzc1MDAwNSAzMy4xNzA4OTg0Mzc1VjQzLjBIMjQ3Ljc1OTE3OTY4NzUwMDA1VjMyLjU4NDk2MDkzNzVDMjQ3Ljc1OTE3OTY4NzUwMDA1IDI4LjY0NDUzMTI1IDI0NS41MzI2MTcxODc1MDAwNSAyNi40MTc5Njg3NSAyNDIuMTYzNDc2NTYyNTAwMDUgMjYuNDE3OTY4NzVDMjM5Ljc2MTEzMjgxMjUwMDA1IDI2LjQxNzk2ODc1IDIzOC4wNjE5MTQwNjI1MDAwNSAyNy41ODk4NDM3NSAyMzcuMDk1MTE3MTg3NTAwMDUgMjkuODg5NjQ4NDM3NUwyMzcuMDUxMTcxODc1MDAwMDUgMjYuNjIzMDQ2ODc1SDIzMy40NDc2NTYyNTAwMDAwNVY0My4wSDIzNy4yNTYyNTAwMDAwMDAwNVogTTI1OC40Mzg0NzY1NjI1MDAwNiA0My4zMzY5MTQwNjI1QzI2Mi4wODU5Mzc1MDAwMDAwNiA0My4zMzY5MTQwNjI1IDI2NC42MzQ3NjU2MjUwMDAwNiA0MS41OTM3NSAyNjUuNDI1NzgxMjUwMDAwMDYgMzguOTQyMzgyODEyNUwyNjEuOTI0ODA0Njg3NTAwMDYgMzguMjI0NjA5Mzc1QzI2MS40MTIxMDkzNzUwMDAwNiAzOS42MTYyMTA5Mzc1IDI2MC4xNTIzNDM3NTAwMDAwNiA0MC4zNDg2MzI4MTI1IDI1OC40ODI0MjE4NzUwMDAwNiA0MC4zNDg2MzI4MTI1QzI1Ni4wMzYxMzI4MTI1MDAwNiA0MC4zNDg2MzI4MTI1IDI1NC4zODA4NTkzNzUwMDAwNiAzOC43OTU4OTg0Mzc1IDI1NC4yNzgzMjAzMTI1MDAwNiAzNS44ODA4NTkzNzVIMjY1LjY3NDgwNDY4NzUwMDA2VjM0LjY3OTY4NzVDMjY1LjY3NDgwNDY4NzUwMDA2IDI4LjkzNzUgMjYyLjE4ODQ3NjU2MjUwMDA2IDI2LjQxNzk2ODc1IDI1OC4xODk0NTMxMjUwMDAwNiAyNi40MTc5Njg3NUMyNTMuNTAxOTUzMTI1MDAwMDYgMjYuNDE3OTY4NzUgMjUwLjQ4NDM3NTAwMDAwMDA2IDI5Ljg3NSAyNTAuNDg0Mzc1MDAwMDAwMDYgMzQuOTE0MDYyNUMyNTAuNDg0Mzc1MDAwMDAwMDYgNDAuMDQxMDE1NjI1IDI1My41MDE5NTMxMjUwMDAwNiA0My4zMzY5MTQwNjI1IDI1OC40Mzg0NzY1NjI1MDAwNiA0My4zMzY5MTQwNjI1Wk0yNTQuMjkyOTY4NzUwMDAwMDYgMzMuMjg4MDg1OTM3NUMyNTQuNDY4NzUwMDAwMDAwMDYgMzEuMTA1NDY4NzUgMjU1Ljg3NTAwMDAwMDAwMDA2IDI5LjQwNjI1IDI1OC4yMDQxMDE1NjI1MDAwNiAyOS40MDYyNUMyNjAuNDc0NjA5Mzc1MDAwMDYgMjkuNDA2MjUgMjYxLjc0OTAyMzQzNzUwMDA2IDMwLjk0NDMzNTkzNzUgMjYxLjk2ODc1MDAwMDAwMDA2IDMzLjI4ODA4NTkzNzVaIiBmaWxsPSIjRjZGM0VDIj48L3BhdGg+PHBhdGggZD0iTTI3MS42OTUzMTI1MDAwMDAwNiA0My4yNDkwMjM0Mzc1QzI3My4wMTM2NzE4NzUwMDAwNiA0My4yNDkwMjM0Mzc1IDI3NC4wNTM3MTA5Mzc1MDAwNiA0Mi4yMjM2MzI4MTI1IDI3NC4wNTM3MTA5Mzc1MDAwNiA0MC45MDUyNzM0Mzc1QzI3NC4wNTM3MTA5Mzc1MDAwNiAzOS42MDE1NjI1IDI3My4wMTM2NzE4NzUwMDAwNiAzOC41NzYxNzE4NzUgMjcxLjY5NTMxMjUwMDAwMDA2IDM4LjU3NjE3MTg3NUMyNzAuMzc2OTUzMTI1MDAwMDYgMzguNTc2MTcxODc1IDI2OS4zNTE1NjI1MDAwMDAwNiAzOS42MDE1NjI1IDI2OS4zNTE1NjI1MDAwMDAwNiA0MC45MDUyNzM0Mzc1QzI2OS4zNTE1NjI1MDAwMDAwNiA0Mi4yMjM2MzI4MTI1IDI3MC4zNzY5NTMxMjUwMDAwNiA0My4yNDkwMjM0Mzc1IDI3MS42OTUzMTI1MDAwMDAwNiA0My4yNDkwMjM0Mzc1WiBNMjc3LjkwNjgzNTkzNzUwMDAzIDQzLjBIMjgxLjcxNTQyOTY4NzUwMDAzVjI2LjYyMzA0Njg3NUgyNzcuOTA2ODM1OTM3NTAwMDNaTTI3OS44MTExMzI4MTI1MDAwMyAyNC4zMDg1OTM3NUMyODEuMDI2OTUzMTI1MDAwMDMgMjQuMzA4NTkzNzUgMjgyLjAzNzY5NTMxMjUwMDAzIDIzLjM3MTA5Mzc1IDI4Mi4wMzc2OTUzMTI1MDAwMyAyMi4yMTM4NjcxODc1QzI4Mi4wMzc2OTUzMTI1MDAwMyAyMS4wNTY2NDA2MjUgMjgxLjAyNjk1MzEyNTAwMDAzIDIwLjEzMzc4OTA2MjUgMjc5LjgxMTEzMjgxMjUwMDAzIDIwLjEzMzc4OTA2MjVDMjc4LjU5NTMxMjUwMDAwMDAzIDIwLjEzMzc4OTA2MjUgMjc3LjU5OTIxODc1MDAwMDAzIDIxLjA1NjY0MDYyNSAyNzcuNTk5MjE4NzUwMDAwMDMgMjIuMjEzODY3MTg3NUMyNzcuNTk5MjE4NzUwMDAwMDMgMjMuMzcxMDkzNzUgMjc4LjU5NTMxMjUwMDAwMDAzIDI0LjMwODU5Mzc1IDI3OS44MTExMzI4MTI1MDAwMyAyNC4zMDg1OTM3NVogTTI5Mi4yNjI4OTA2MjUgNDMuMzM2OTE0MDYyNUMyOTcuMDM4MjgxMjUgNDMuMzM2OTE0MDYyNSAzMDAuMDk5ODA0Njg3NSAzOS45Mzg0NzY1NjI1IDMwMC4wOTk4MDQ2ODc1IDM0Ljg5OTQxNDA2MjVDMzAwLjA5OTgwNDY4NzUgMjkuODAxNzU3ODEyNSAyOTcuMDM4MjgxMjUgMjYuNDE3OTY4NzUgMjkyLjI2Mjg5MDYyNSAyNi40MTc5Njg3NUMyODcuNDg3NSAyNi40MTc5Njg3NSAyODQuNDQwNjI1IDI5LjgwMTc1NzgxMjUgMjg0LjQ0MDYyNSAzNC44OTk0MTQwNjI1QzI4NC40NDA2MjUgMzkuOTM4NDc2NTYyNSAyODcuNDg3NSA0My4zMzY5MTQwNjI1IDI5Mi4yNjI4OTA2MjUgNDMuMzM2OTE0MDYyNVpNMjkyLjI2Mjg5MDYyNSA0MC4yNDYwOTM3NUMyODkuNjExNTIzNDM3NSA0MC4yNDYwOTM3NSAyODguMzIyNDYwOTM3NSAzNy44NzMwNDY4NzUgMjg4LjMyMjQ2MDkzNzUgMzQuODg0NzY1NjI1QzI4OC4zMjI0NjA5Mzc1IDMxLjg2NzE4NzUgMjg5LjYxMTUyMzQzNzUgMjkuNTA4Nzg5MDYyNSAyOTIuMjYyODkwNjI1IDI5LjUwODc4OTA2MjVDMjk0LjkyODkwNjI1IDI5LjUwODc4OTA2MjUgMjk2LjIzMjYxNzE4NzUgMzEuODY3MTg3NSAyOTYuMjMyNjE3MTg3NSAzNC44ODQ3NjU2MjVDMjk2LjIzMjYxNzE4NzUgMzcuODczMDQ2ODc1IDI5NC45Mjg5MDYyNSA0MC4yNDYwOTM3NSAyOTIuMjYyODkwNjI1IDQwLjI0NjA5Mzc1WiIgZmlsbD0iIzJGRDRCQiI+PC9wYXRoPjwvc3ZnPg==" style="height:40px;width:auto;display:block"/></a>
+<nav aria-label="Main" class="navlinks">
+<a class="lnk" href="#problem" style="color:#C9D2DD;text-decoration:none;font-size:15px">The problem</a>
+<a class="lnk" href="#telos" style="color:#C9D2DD;text-decoration:none;font-size:15px">Telos Studio</a>
+<a class="lnk" href="#help" style="color:#C9D2DD;text-decoration:none;font-size:15px">Where we help</a>
+<a class="lnk" href="#about" style="color:#C9D2DD;text-decoration:none;font-size:15px">About</a>
+<a class="btn navcta" href="#contact" style="background:#2FD4BB;color:#0E1A2B">Start a conversation</a>
+</nav>
+</div>
 </header>
-
-<main>
-<section class="hero" id="home">
- <div class="grid-bg"></div><div class="hero-orbit"></div><div class="hero-logo-art"><svg class="hero-brandmark" viewBox="0 0 140 164" aria-label="Mind Machine logo" role="img" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
-  <path d="M31 31 L70 8 L109 31"/>
-  <path d="M20 52 L70 82 L120 52 L120 116"/>
-  <path d="M20 52 L20 116"/>
-  <path d="M42 77 L70 94 L98 77 L98 128"/>
-  <path d="M42 77 L42 128"/>
-  <path d="M70 94 L70 139"/>
-  <path d="M35 137 L70 158 L105 137"/>
+<section id="top" style="background:#0E1A2B;color:#F6F3EC">
+<div class="wrap hero" style="padding-top:104px;padding-bottom:120px">
+<div style="display:flex;flex-direction:column;gap:28px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#2FD4BB">Technology intelligence</p>
+<h1 class="h1" style="margin:0;font-family:'Fraunces', Georgia, serif;font-weight:500;letter-spacing:-0.02em;color:#F6F3EC">Understand your technology. Transform with confidence.</h1>
+<p style="margin:0;font-size:20px;line-height:1.55;color:#C9D2DD;max-width:600px">MindMachine helps organisations see the systems they actually have — then modernise, invest and adopt AI with evidence, not hope.</p>
+<div class="ctas">
+<a class="btn" href="#contact" style="background:#2FD4BB;color:#0E1A2B">Start a conversation</a>
+<a class="btn" href="#telos" style="border:1px solid #4A5D78;color:#F6F3EC">How Telos Studio works</a>
+</div>
+<p style="margin:8px 0 0 0;font-size:14px;color:#A9B3C1">Runs in your environment · Works with your LLM · Validated by expert engineers</p>
+</div>
+<div class="heroart" style="display:flex;justify-content:center">
+<svg aria-hidden="true" style="max-width:440px" viewbox="0 0 440 440" width="100%">
+<g fill="none" stroke="#F6F3EC" stroke-opacity="0.22" stroke-width="1.5">
+<path d="M70 90 L190 190 L320 60 L400 170 L320 290 L190 190 L80 320 L190 400 M70 90 L80 320 M320 290 L400 400 M190 400 L320 290"></path>
 </g>
-</svg></div>
- <div class="container hero-inner">
-  <p class="eyebrow">Mind + Machine / Enterprise AI Readiness</p>
-  <h1 class="display">Understand your technology.<br><em>Decide what comes next.</em></h1>
-  <p class="hero-copy">Embracing AI can be daunting. We help organisations unify and organise their technology assets to be intelligent AI users.</p>
-  <div class="hero-actions"><a class="btn" href="#how">See how it works</a><a class="btn" href="#contact">Start with the problem</a></div>
-  <div class="hero-proof">
-   <div><small>01 / Evidence</small><span>Understand the estate you actually have.</span></div>
-   <div><small>02 / Judgement</small><span>Turn fragmented records into decision intelligence.</span></div>
-   <div><small>03 / Action</small><span>Transform with expert minds and intelligent machines.</span></div>
-  </div>
- </div>
-</section>
-
-<section class="problem" id="who">
- <div class="container">
-  <div class="split">
-   <div class="reveal"><p class="eyebrow">Who we are</p><h2 class="section-title">AI adoption doesn't<br>just happen.</h2></div>
-   <div class="problem-copy reveal">
-    <p class="lead">Tech and data experts who understand that AI adoption doesn't just happen. We are not trying to replace Open AI or Anthropic but to give you the tools to use AI in a model agnostic and token optimised way.</p>
-    <p>We understand legacy tech, complex data sets and use this knowledge to create an AI ready blueprint of your business.</p>
-   </div>
-  </div>
-  <div class="system-strip reveal">
-   <div class="system">System 01<strong>Source code</strong></div><div class="system">System 02<strong>Work & delivery</strong></div>
-   <div class="system">System 03<strong>Architecture</strong></div><div class="system">System 04<strong>Operations</strong></div>
-  </div>
- </div>
-</section>
-
-
-<section class="proposition">
- <div class="container">
-  <div class="prop-head">
-   <div class="reveal"><div style="margin-bottom:28px"><svg class="section-mark" viewBox="0 0 140 164" aria-label="Mind Machine logo" role="img" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
-  <path d="M31 31 L70 8 L109 31"/>
-  <path d="M20 52 L70 82 L120 52 L120 116"/>
-  <path d="M20 52 L20 116"/>
-  <path d="M42 77 L70 94 L98 77 L98 128"/>
-  <path d="M42 77 L42 128"/>
-  <path d="M70 94 L70 139"/>
-  <path d="M35 137 L70 158 L105 137"/>
+<g fill="none" stroke="#2FD4BB" stroke-opacity="0.6" stroke-width="2">
+<path d="M190 190 L320 60 M190 190 L320 290"></path>
 </g>
-</svg></div><p class="eyebrow">Our proposition</p><h2 class="section-title">We solve the problem.<br>Not sell the solution.</h2></div>
-   <div class="reveal"><p class="lead">Every organisation starts somewhere different. We begin by understanding the business problem, then apply the right combination of independent advice, exceptional people and intelligent technology.</p></div>
-  </div>
-  <div class="prop-grid">
-   <article class="prop-card reveal"><span class="no">01 / ADVISE</span><h3>Independent advice</h3><p>We are not incentivised to force a particular model, platform or delivery shape. If the best answer is different from ours, we should be prepared to say so.</p></article>
-   <article class="prop-card reveal"><span class="no">02 / ENGINEER</span><h3>Exceptional people</h3><p>Experienced engineers and architects who can reason, design and deliver without AI — and use AI intelligently to move faster when it adds value.</p></article>
-   <article class="prop-card reveal"><span class="no">03 / ACCELERATE</span><h3>Intelligent technology</h3><p>Our orchestration and technology intelligence capabilities automate the heavy lifting of understanding complex estates, so expert people can focus on judgement and action.</p></article>
-  </div>
-  <div class="prop-principle reveal">
-   <strong>High-value outcomes. Independent thinking. Technology applied with purpose.</strong>
-   <span>We create value by solving consequential problems effectively, combining expert judgement and technology only where each materially improves the outcome.</span>
-  </div>
- </div>
-</section>
-
-<section class="spectrum">
- <div class="container">
-  <div class="split">
-   <div class="reveal"><p class="eyebrow">Meet you where you are</p><h2 class="section-title">There is no single<br>AI starting point.</h2></div>
-   <p class="lead reveal">Some organisations are still heavily manual. Others already operate with sophisticated AI-enabled engineering. The answer should reflect the organisation, its technology and its readiness — not our preferred solution.</p>
-  </div>
-  <div class="spectrum-bar reveal">
-   <div class="spectrum-line"></div>
-   <div class="spectrum-labels"><span>Manual / fragmented</span><span>AI-enabled / integrated</span></div>
-  </div>
-  <div class="spectrum-copy">
-   <article class="reveal"><h3>Understand first</h3><p>Establish the actual problem, constraints and evidence before recommending change.</p></article>
-   <article class="reveal"><h3>Choose deliberately</h3><p>Consulting, engineering, technology or a combination — according to what creates the most value.</p></article>
-   <article class="reveal"><h3>Accelerate responsibly</h3><p>Use AI where it improves speed and quality while retaining context, governance and human judgement.</p></article>
-  </div>
- </div>
-</section>
-
-<section class="quote">
- <div class="container reveal">
-  <p class="eyebrow">Our philosophy</p>
-  <blockquote>We don't start with what we want to sell. <span>We start with what you need to solve.</span></blockquote>
- </div>
-</section>
-
-<section class="architecture" id="how">
- <div class="container">
-  <div class="arch-head">
-   <div class="reveal"><p class="eyebrow">How Mind Machine works</p><h2 class="section-title">From systems of record<br>to a system of judgement.</h2></div>
-   <p class="lead reveal">We establish context before asking AI for conclusions. Enterprise evidence is collected, structured and connected first. AI then operates against that bounded context, with experienced people providing validation and judgement.</p>
-  </div>
-  <div class="pipeline reveal">
-   <div class="stage"><span class="stage-num">01 / INPUT</span><h3>Systems of Record</h3><p>Code, delivery, documentation, infrastructure and operational evidence.</p></div>
-   <div class="stage"><span class="stage-num">02 / CONNECT</span><h3>Orchestration</h3><p>Secure connectors collect and normalise relevant enterprise evidence.</p></div>
-   <div class="stage active"><span class="stage-num">03 / CONTEXT</span><h3>Evidence Graph</h3><p>Relationships, dependencies, signals and facts form a connected technology model.</p></div>
-   <div class="stage"><span class="stage-num">04 / REASON</span><h3>Technology Intelligence</h3><p>Analytics and AI turn structured context into findings, options and decision support.</p></div>
-   <div class="stage"><span class="stage-num">05 / ACT</span><h3>Human Judgement</h3><p>Engineers and architects validate, interpret and translate evidence into action.</p></div>
-  </div>
-  <p class="flow-note reveal">The LLM is part of the reasoning layer — not a substitute for understanding the underlying technology estate.</p>
- </div>
-</section>
-
-<section class="intelligence" id="intelligence">
- <div class="container">
-  <div class="intelligence-intro">
-   <div class="reveal"><p class="intelligence-label">Technology Intelligence</p><h2 class="section-title">Technology intelligence<br>for consequential decisions.</h2></div>
-   <div class="intelligence-copy reveal"><p class="lead">Our technology intelligence layer brings fragmented technology evidence together, builds a connected understanding of the estate and turns it into decision-ready intelligence.</p><p>Instead of treating source code, delivery systems, documentation and infrastructure as isolated artefacts, intelligence analyses the relationships between them to expose what matters.</p></div>
-  </div>
-
-  <div class="product-shell reveal">
-   <div class="shell-top"><div class="shell-dots"><i></i><i></i><i></i></div><span>MINDMACHINE / TECHNOLOGY INTELLIGENCE</span><span>ESTATE / 01</span></div>
-   <div class="shell-body">
-    <aside class="sidebar"><div class="selected">Overview</div><div>Evidence Graph</div><div>Architecture</div><div>Risk</div><div>Maturity</div><div>Recommendations</div><div>Decision Pack</div></aside>
-    <div class="dashboard">
-     <div class="dash-title"><h3>Enterprise Technology Overview</h3><span>EVIDENCE-LED / MODEL-AGNOSTIC</span></div>
-     <div class="metrics">
-      <div class="metric"><small>Evidence sources</small><b>Connected</b><p>Correlated across systems</p></div>
-      <div class="metric"><small>Assessment</small><b>12</b><p>Technology pillars</p></div>
-      <div class="metric"><small>Analysis</small><b>365+</b><p>Potential checks</p></div>
-      <div class="metric"><small>Output</small><b>Action</b><p>Evidence to judgement</p></div>
-     </div>
-     <div class="graph-panel">
-      <i class="edge e1"></i><i class="edge e2"></i><i class="edge e3"></i><i class="edge e4"></i><i class="edge e5"></i><i class="edge e6"></i>
-      <i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i><i class="node n5"></i><i class="node n6"></i>
-      <span class="graph-caption">Evidence graph / relationships / dependencies / risk signals</span>
-     </div>
-    </div>
-   </div>
-  </div>
- </div>
-</section>
-
-<section class="intelligence">
- <div class="container">
-  <div class="intro-row">
-   <div class="reveal"><p class="eyebrow">What the platform produces</p><h2 class="section-title">Evidence becomes<br>intelligence.</h2></div>
-   <p class="lead reveal">The goal is not another dashboard. It is a coherent, evidence-backed view of technology that leaders and engineering teams can use to make better decisions.</p>
-  </div>
-  <div class="cap-grid">
-   <article class="cap reveal"><div class="icon">01 / MAP</div><h3>System understanding</h3><p>Build a structured view of applications, components, relationships, dependencies and architecture from available evidence.</p></article>
-   <article class="cap reveal"><div class="icon">02 / EVIDENCE</div><h3>Evidence graph</h3><p>Connect facts that live across different systems of record rather than interpreting each source in isolation.</p></article>
-   <article class="cap reveal"><div class="icon">03 / RISK</div><h3>Risks & wins</h3><p>Surface technology concerns alongside strengths and positive signals, with evidence that can be investigated.</p></article>
-   <article class="cap reveal"><div class="icon">04 / MATURITY</div><h3>Maturity assessment</h3><p>Assess engineering and technology maturity across multiple dimensions rather than relying on a single generic score.</p></article>
-   <article class="cap reveal"><div class="icon">05 / DEBT</div><h3>Technical debt</h3><p>Make hidden complexity and accumulated engineering constraints easier to understand and prioritise.</p></article>
-   <article class="cap reveal"><div class="icon">06 / OPTIONS</div><h3>Recommendations</h3><p>Translate technical evidence into practical considerations and options for engineering and technology leaders.</p></article>
-   <article class="cap reveal"><div class="icon">07 / EXEC</div><h3>Executive insight</h3><p>Abstract complex technology findings into concise, decision-oriented views without losing the supporting evidence.</p></article>
-   <article class="cap reveal"><div class="icon">08 / ACTION</div><h3>Decision packs</h3><p>Structure outcomes around what to fix now, where to invest and what requires further assurance.</p></article>
-  </div>
- </div>
-</section>
-
-<section class="assessment">
- <div class="container">
-  <div class="assess-head">
-   <div class="reveal"><div style="margin-bottom:28px"><svg class="section-mark dark-mark" viewBox="0 0 140 164" aria-label="Mind Machine logo" role="img" xmlns="http://www.w3.org/2000/svg">
-<g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter">
-  <path d="M31 31 L70 8 L109 31"/>
-  <path d="M20 52 L70 82 L120 52 L120 116"/>
-  <path d="M20 52 L20 116"/>
-  <path d="M42 77 L70 94 L98 77 L98 128"/>
-  <path d="M42 77 L42 128"/>
-  <path d="M70 94 L70 139"/>
-  <path d="M35 137 L70 158 L105 137"/>
+<g fill="#F6F3EC" fill-opacity="0.6">
+<circle cx="70" cy="90" r="6"></circle><circle cx="320" cy="60" r="7"></circle><circle cx="400" cy="170" r="5"></circle><circle cx="320" cy="290" r="7"></circle><circle cx="80" cy="320" r="5"></circle><circle cx="190" cy="400" r="6"></circle><circle cx="400" cy="400" r="5"></circle>
 </g>
-</svg></div><p class="eyebrow">Deep technology assessment</p><h2 class="section-title">A multidimensional view<br>of engineering maturity.</h2></div>
-   <p class="lead reveal">Our platform can assess the technology estate across twelve complementary pillars, using hundreds of evidence-led checks where the required source information is available.</p>
-  </div>
-  <div class="pillars reveal">
-   <div class="pillar"><small>01</small><p>Architecture</p></div><div class="pillar"><small>02</small><p>Code quality</p></div>
-   <div class="pillar"><small>03</small><p>Security</p></div><div class="pillar"><small>04</small><p>Reliability</p></div>
-   <div class="pillar"><small>05</small><p>Delivery</p></div><div class="pillar"><small>06</small><p>Observability</p></div>
-   <div class="pillar"><small>07</small><p>Data</p></div><div class="pillar"><small>08</small><p>Infrastructure</p></div>
-   <div class="pillar"><small>09</small><p>Testing</p></div><div class="pillar"><small>10</small><p>Documentation</p></div>
-   <div class="pillar"><small>11</small><p>Engineering practice</p></div><div class="pillar"><small>12</small><p>AI readiness</p></div>
-  </div>
-  <div class="checks reveal"><strong>365+</strong><span>potential checks across the technology landscape, applied according to available evidence and scope.</span></div>
- </div>
+<circle cx="190" cy="190" fill="#2FD4BB" r="14"></circle>
+</svg>
+</div>
+</div>
 </section>
-
-<section class="services" id="services">
- <div class="container">
-  <p class="eyebrow reveal">Our services</p><h2 class="section-title reveal">Diagnose first.<br>Prescribe second.</h2>
-  <div class="service-grid">
-   <article class="service reveal"><span class="no">01</span><h3>Unified orchestration</h3><p>Build the evidence foundation required for meaningful analysis.</p><ul><li>Privacy first</li><li>Whole system approach</li><li>Proprietary data graph</li></ul></article>
-   <article class="service reveal"><span class="no">02</span><h3>Deciphering legacy</h3><p>Make complex or poorly understood technology estates visible again.</p><ul><li>System documentation</li><li>Maturity assessment</li><li>Unlock the "black box"</li></ul></article>
-   <article class="service reveal"><span class="no">03</span><h3>Informed transformation</h3><p>Use evidence and engineering judgement to determine what should change and why.</p><ul><li>Strategic decision support</li><li>Code transformation</li><li>Increased velocity</li></ul></article>
-   <article class="service reveal"><span class="no">04</span><h3>Engineering execution</h3><p>Bring exceptional AI-native engineering capability when transformation requires people as well as technology.</p><ul><li>Expert engineering</li><li>Architecture</li><li>AI-enabled delivery</li></ul></article>
-  </div>
- </div>
+<section class="sec" id="problem">
+<div class="wrap" style="display:flex;flex-direction:column;gap:56px">
+<div class="split">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#087063">The problem</p>
+<h2 class="h2" style="margin:0;font-family:'Fraunces', Georgia, serif;font-weight:500;letter-spacing:-0.015em">Most technology estates are a black box.</h2>
+</div>
+<p style="margin:0;font-size:19px;line-height:1.65;color:#4A5668">Decades of in-house development, outsourced builds and changing teams have left most organisations running systems nobody fully understands. Without that understanding it's hard to judge what to keep, what to fix, what to replace — or how to brief the partner who'll build what comes next.</p>
+</div>
+<div class="g3">
+<div style="background:#FFFFFF;border:1px solid #D9D3C5;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.08em;color:#087063">01 / KNOWLEDGE GAP</p>
+<h3 style="margin:0;font-size:21px;line-height:1.3;font-weight:600">Decades of change, little memory</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">The people who built it have moved on. The documentation, if it exists, describes a system that no longer does.</p>
+</div>
+<div style="background:#FFFFFF;border:1px solid #D9D3C5;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.08em;color:#087063">02 / HARD TO ASSESS</p>
+<h3 style="margin:0;font-size:21px;line-height:1.3;font-weight:600">Secure, robust, fit for purpose?</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">How relevant is your code base? How exposed? How connected to everything around it? Most leaders can't say with confidence.</p>
+</div>
+<div style="background:#FFFFFF;border:1px solid #D9D3C5;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.08em;color:#087063">03 / AI AMPLIFIES IT</p>
+<h3 style="margin:0;font-size:21px;line-height:1.3;font-weight:600">Garbage in, garbage out</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">Point AI at poorly understood code with no clear goal and you burn tokens, put data at risk and miss the outcome you wanted.</p>
+</div>
+</div>
+<div class="g3" style="background:#E9E2D3;border-radius:14px;padding:40px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="margin:0;font-weight:600;font-size:18px">Rush in</p>
+<p style="margin:0;font-size:16px;color:#4A5668">Data leaves your control, tokens burn and the results disappoint.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="margin:0;font-weight:600;font-size:18px">Hold back</p>
+<p style="margin:0;font-size:16px;color:#4A5668">Legacy risk keeps growing while others move ahead.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="margin:0;font-weight:600;font-size:18px;color:#087063">The MindMachine way</p>
+<p style="margin:0;font-size:16px;color:#0E1A2B">Understand first. Then move — mindfully, and with control.</p>
+</div>
+</div>
+</div>
 </section>
-
-<section class="products" id="products">
- <div class="container">
-  <p class="eyebrow reveal">How we create value</p><h2 class="section-title reveal">The right combination<br>for the problem.</h2>
-  <div class="product-grid">
-   <article class="product reveal"><span class="tag">Mind / Expertise</span><h3>Exceptional People</h3><p>Exceptional engineers and architects with deep expertise. AI and proprietary tooling amplify their capability; they do not replace it.</p></article>
-   <article class="product reveal"><span class="tag">Machine / Foundation</span><h3>Secure Orchestration</h3><p>Automated Secure data orchestration that brings relevant technology evidence together for analysis.</p></article>
-   <article class="product featured reveal"><span class="tag">Judgement / Intelligence</span><h3>Technology Intelligence</h3><p>A connected environment for technology analytics, evidence, assessment, reasoning and decision support. Our methods and platform improve across engagements while customer information remains subject to agreed governance and controls.</p></article>
-  </div>
- </div>
+<section class="sec" id="telos" style="background:#FFFFFF;border-top:1px solid #D9D3C5;border-bottom:1px solid #D9D3C5">
+<div class="wrap" style="display:flex;flex-direction:column;gap:56px">
+<div class="split">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#087063">Telos Studio</p>
+<h2 class="h2" style="margin:0;font-family:'Fraunces', Georgia, serif;font-weight:500;letter-spacing:-0.015em">Context before conclusions.</h2>
+</div>
+<p style="margin:0;font-size:19px;line-height:1.65;color:#4A5668">Telos Studio is our data orchestration platform. It runs inside your environment, connects every artefact you have, and maps them onto a proprietary knowledge graph that codifies more than 25 years of engineering and systems experience. Your own LLM adds reasoning on top. Our engineers make sense of the result.</p>
+</div>
+<div class="g4">
+<div style="background:#F6F3EC;border:1px solid #D9D3C5;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;color:#087063">01 / CONNECT</p>
+<h3 style="margin:0;font-size:20px;font-weight:600">Your systems of record</h3>
+<p style="margin:0;font-size:15px;line-height:1.55;color:#4A5668">Code repositories, Confluence, Jira, hosting and cloud data, APIs and adjacent systems.</p>
+</div>
+<div style="background:#F6F3EC;border:1px solid #D9D3C5;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;color:#087063">02 / MAP</p>
+<h3 style="margin:0;font-size:20px;font-weight:600">The knowledge graph</h3>
+<p style="margin:0;font-size:15px;line-height:1.55;color:#4A5668">Links entities across systems to show what's connected, what isn't, and why it matters.</p>
+</div>
+<div style="background:#F6F3EC;border:1px solid #D9D3C5;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;color:#087063">03 / REASON</p>
+<h3 style="margin:0;font-size:20px;font-weight:600">Your chosen LLM</h3>
+<p style="margin:0;font-size:15px;line-height:1.55;color:#4A5668">Augments the analysis with documentation, explanation and options. No model lock-in.</p>
+</div>
+<div style="background:#0E1A2B;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;color:#2FD4BB">04 / VALIDATE</p>
+<h3 style="margin:0;font-size:20px;font-weight:600;color:#F6F3EC">Expert minds</h3>
+<p style="margin:0;font-size:15px;line-height:1.55;color:#C9D2DD">Senior engineers interpret, challenge and refine — the final 10% machines can't do.</p>
+</div>
+</div>
+<div class="g4" style="border-top:1px solid #D9D3C5;padding-top:40px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="margin:0;font-weight:600">Sovereign by design</p>
+<p style="margin:0;font-size:15px;color:#4A5668">Deploys inside your network. You can isolate it, audit it or switch it off.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="margin:0;font-weight:600">Model agnostic</p>
+<p style="margin:0;font-size:15px;color:#4A5668">Works with the LLM you've already approved — ChatGPT, Gemini, Claude or others.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="margin:0;font-weight:600">Token efficient</p>
+<p style="margin:0;font-size:15px;color:#4A5668">The heavy lifting is done once, so later AI work — including code generation — costs less.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="margin:0;font-weight:600">Human in the loop</p>
+<p style="margin:0;font-size:15px;color:#4A5668">Every finding is reviewed by people with the expertise to challenge it.</p>
+</div>
+</div>
+</div>
 </section>
-
-<section class="security">
- <div class="container security-grid">
-  <div class="reveal"><p class="eyebrow">Enterprise by design</p><h2 class="section-title">Intelligence without surrendering control.</h2><p class="lead" style="margin-top:25px">Enterprise AI only works when security, sovereignty and governance are treated as design constraints, not afterthoughts.</p></div>
-  <div class="guardrails reveal">
-   <div class="guard"><b>01</b><div><strong>Deploy to the appropriate environment</strong><p>Architecture can be designed around customer security and deployment requirements.</p></div></div>
-   <div class="guard"><b>02</b><div><strong>Controlled data movement</strong><p>Relevant evidence is collected deliberately through approved connectors and boundaries.</p></div></div>
-   <div class="guard"><b>03</b><div><strong>Model agnostic</strong><p>Use an appropriate approved LLM rather than making the business dependent on a single model provider.</p></div></div>
-   <div class="guard"><b>04</b><div><strong>Human in the loop</strong><p>AI-generated interpretation is reviewed in context by people with the expertise to challenge it.</p></div></div>
-  </div>
- </div>
+<section class="sec" id="help">
+<div class="wrap" style="display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#087063">Where we help</p>
+<h2 class="h2" style="margin:0;font-family:'Fraunces', Georgia, serif;font-weight:500;letter-spacing:-0.015em">Evidence for the decisions that matter.</h2>
+</div>
+<div class="g3">
+<div style="background:#FFFFFF;border:1px solid #D9D3C5;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:10px">
+<h3 style="margin:0;font-size:20px;font-weight:600">Systems documentation</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">Rebuild the missing manual for the systems that run your business — and block your next move.</p>
+</div>
+<div style="background:#FFFFFF;border:1px solid #D9D3C5;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:10px">
+<h3 style="margin:0;font-size:20px;font-weight:600">Analysis and recommendations</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">An independent view of risk, strengths, technical debt and the options ahead.</p>
+</div>
+<div style="background:#FFFFFF;border:1px solid #D9D3C5;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:10px">
+<h3 style="margin:0;font-size:20px;font-weight:600">M&amp;A due diligence</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">Pre- and post-deal evidence on the technology you're really buying, and what it will take to integrate.</p>
+</div>
+<div style="background:#FFFFFF;border:1px solid #D9D3C5;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:10px">
+<h3 style="margin:0;font-size:20px;font-weight:600">Partner build assurance</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">Audit a legacy product against what an outsourcing partner has built to replace it.</p>
+</div>
+<div style="background:#FFFFFF;border:1px solid #D9D3C5;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:10px">
+<h3 style="margin:0;font-size:20px;font-weight:600">System relationships</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">Map dependencies and referential integrity between systems before you change any of them.</p>
+</div>
+<div style="background:#16304F;border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:10px">
+<h3 style="margin:0;font-size:20px;font-weight:600;color:#F6F3EC">What you get</h3>
+<p style="margin:0;font-size:16px;color:#C9D2DD">System maps, risk and maturity scores, technical debt analysis, recommendations and executive decision packs.</p>
+</div>
+</div>
+</div>
 </section>
+<section class="sec" id="about" style="background:#0E1A2B;color:#F6F3EC">
+<div class="wrap split">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#2FD4BB">Mind + Machine</p>
+<h2 class="h2" style="margin:0;font-family:'Fraunces', Georgia, serif;font-weight:500;letter-spacing:-0.015em;color:#F6F3EC">Machines do the lifting. Minds make the difference.</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:32px">
+<p style="margin:0;font-size:19px;line-height:1.65;color:#C9D2DD">Our name is the model. Automation gets you most of the way, fast. But the final 10% — the analysis, the checking, the refinement that turns raw output into a decision you can stand behind — needs experienced people. So we've brought together some of the best engineers we've worked with at Trainline and dunnhumby.</p>
+<div class="g2" style="gap:32px;border-top:1px solid #2C3D55;padding-top:32px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="margin:0;font-size:20px;font-weight:600;color:#F6F3EC">David Higgins</h3>
+<p style="margin:0;font-size:13px;font-family:'JetBrains Mono', monospace;letter-spacing:0.08em;color:#2FD4BB">CO-FOUNDER</p>
+<p style="margin:0;font-size:16px;color:#A9B3C1">Former GM, B2B at Trainline. [Add a line on background and focus.]</p>
+</div>
 
-<section class="usecases">
- <div class="container">
-  <p class="eyebrow reveal">Where we help</p><h2 class="section-title reveal">Complex technology.<br>Consequential decisions.</h2>
-  <div class="use-grid">
-   <article class="use reveal"><span>01</span><div><h3>Legacy technology deciphering</h3><p>Understand systems that have become difficult to explain, document or safely change.</p></div></article>
-   <article class="use reveal"><span>02</span><div><h3>Technology due diligence</h3><p>Build an evidence-backed view of a technology estate to support deeper investigation and decision making.</p></div></article>
-   <article class="use reveal"><span>03</span><div><h3>Modernisation planning</h3><p>Identify dependencies, constraints and priorities before committing to transformation.</p></div></article>
-   <article class="use reveal"><span>04</span><div><h3>Enterprise AI readiness</h3><p>Understand whether technology, data and engineering practices are ready to support responsible AI adoption.</p></div></article>
-   <article class="use reveal"><span>05</span><div><h3>Engineering effectiveness</h3><p>Use evidence across code, delivery and operations to identify where engineering can become more effective.</p></div></article>
-   <article class="use reveal"><span>06</span><div><h3>Technology risk & assurance</h3><p>Surface areas requiring deeper attention and provide traceable evidence for expert review.</p></div></article>
-  </div>
- </div>
+</div>
+</div>
+</div>
 </section>
-
-
-<section class="ma">
- <div class="container ma-grid">
-  <div class="reveal">
-   <p class="eyebrow">A high-value use case</p>
-   <h2 class="section-title">Know what you are buying.<br>Know what to do with it.</h2>
-   <p class="lead" style="margin-top:25px">For acquisitive businesses and investment teams, technology complexity can remain hidden until after a transaction. Mind Machine can support a deeper, evidence-led understanding of the estate before and after acquisition.</p>
-  </div>
-  <div class="ma-flow reveal">
-   <div class="ma-step"><span>01</span><div><h3>Understand</h3><p>Build a structured view of applications, architecture, engineering evidence and dependencies.</p></div></div>
-   <div class="ma-step"><span>02</span><div><h3>Investigate</h3><p>Surface risks, strengths, duplication and areas that warrant deeper expert diligence.</p></div></div>
-   <div class="ma-step"><span>03</span><div><h3>Decide</h3><p>Turn technical findings into decision support for leaders, investors and technology teams.</p></div></div>
-   <div class="ma-step"><span>04</span><div><h3>Integrate & modernise</h3><p>Use the evidence base to inform rationalisation, integration and transformation priorities.</p></div></div>
-  </div>
- </div>
+<section class="sec" id="start">
+<div class="wrap" style="display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+<p style="margin:0;font-family:'JetBrains Mono', monospace;font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#087063">How we start</p>
+<h2 class="h2" style="margin:0;font-family:'Fraunces', Georgia, serif;font-weight:500;letter-spacing:-0.015em">We don't start with what we want to sell.</h2>
+<p style="margin:0;font-size:19px;color:#4A5668">We start with what you need to solve.</p>
+</div>
+<div class="g3">
+<div style="border-top:2px solid #0F9E8A;padding-top:24px;display:flex;flex-direction:column;gap:8px">
+<p style="margin:0;font-family:'Fraunces', Georgia, serif;font-size:40px;line-height:1;color:#087063">1</p>
+<h3 style="margin:0;font-size:20px;font-weight:600">Define the problem</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">A working session on the decision you need to make, and the systems behind it.</p>
+</div>
+<div style="border-top:2px solid #0F9E8A;padding-top:24px;display:flex;flex-direction:column;gap:8px">
+<p style="margin:0;font-family:'Fraunces', Georgia, serif;font-size:40px;line-height:1;color:#087063">2</p>
+<h3 style="margin:0;font-size:20px;font-weight:600">Scoped assessment</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">Telos Studio deployed in your environment, connected to your systems and your LLM.</p>
+</div>
+<div style="border-top:2px solid #0F9E8A;padding-top:24px;display:flex;flex-direction:column;gap:8px">
+<p style="margin:0;font-family:'Fraunces', Georgia, serif;font-size:40px;line-height:1;color:#087063">3</p>
+<h3 style="margin:0;font-size:20px;font-weight:600">Decision pack</h3>
+<p style="margin:0;font-size:16px;color:#4A5668">Findings, options and a roadmap — ready for your board, your teams or your delivery partner.</p>
+</div>
+</div>
+</div>
 </section>
-
-<section class="culture">
- <div class="container culture-grid">
-  <div class="reveal">
-   <p class="eyebrow">The company we want to build</p>
-   <h2 class="section-title">A different kind of<br>technology company.</h2>
-   <p class="lead" style="margin-top:25px">We believe exceptional outcomes come from exceptional people working in the right environment. Technology should amplify expertise, not diminish it.</p>
-  </div>
-  <div class="values reveal">
-   <div class="value"><small>01 / PEOPLE</small><h3>Expertise matters</h3><p>Create an environment where talented people can do meaningful, high-quality work.</p></div>
-   <div class="value"><small>02 / CLIENTS</small><h3>Value before utilisation</h3><p>Measure success by the outcome created for the client, not by how many people we can deploy.</p></div>
-   <div class="value"><small>03 / TECHNOLOGY</small><h3>Amplify human judgement</h3><p>Use machines for scale and speed while keeping experienced minds responsible for context and judgement.</p></div>
-   <div class="value"><small>04 / TRUST</small><h3>Be willing to say “not us”</h3><p>Long-term trust requires independent advice, including when another approach is the better answer.</p></div>
-  </div>
- </div>
+<section id="contact" style="background:#16304F;color:#F6F3EC;padding:96px 0">
+<div class="wrap split">
+<div style="display:flex;flex-direction:column;gap:16px">
+<h2 class="h2" style="margin:0;font-family:'Fraunces', Georgia, serif;font-weight:500;letter-spacing:-0.015em;color:#F6F3EC">Let's start with the problem.</h2>
+<p style="margin:0;font-size:18px;color:#C9D2DD">Tell us about the decision you're facing — modernisation, diligence, AI readiness or a partner build. We'll come back within two working days.</p>
+<p style="margin:0;font-size:18px;font-weight:600"><a href="mailto:hello@mindmachine.io" style="color:#2FD4BB">[hello@mindmachine.io]</a></p>
+</div>
+<form style="display:flex;flex-direction:column;gap:16px;background:#0E1A2B;border-radius:14px;padding:32px">
+<div class="g2" style="gap:16px">
+<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">Name<input name="name" style="min-height:48px;border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:0 14px;font:inherit;font-size:16px" type="text"/></label>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">Work email<input name="email" style="min-height:48px;border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:0 14px;font:inherit;font-size:16px" type="email"/></label>
+</div>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">What decision are you facing?<textarea name="message" rows="4" style="border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:12px 14px;font:inherit;font-size:16px;resize:vertical"></textarea></label>
+<button class="btn" style="align-self:flex-start;border:0;background:#2FD4BB;color:#0E1A2B;cursor:pointer;font-family:inherit" type="button">Start a conversation</button>
+</form>
+</div>
 </section>
-
-<section class="quote">
- <div class="container reveal">
-  <p class="eyebrow">Mind + Machine</p>
-  <blockquote>Machine for scale.<br><span>Mind for context and judgement.</span></blockquote>
- </div>
-</section>
-
-<section class="contact" id="contact">
- <div class="container contact-grid">
-  <div class="reveal"><p class="eyebrow">Start a conversation</p><h2 class="section-title">Start with<br>the problem.</h2><p class="lead">Tell us what you are trying to understand, change or accelerate. We will start there — not with a predetermined product, platform or team.</p></div>
-  <form id="form" class="reveal">
-   <div class="field"><label for="name">Name</label><input id="name" required autocomplete="name"></div>
-   <div class="field"><label for="email">Work email</label><input id="email" type="email" required autocomplete="email"></div>
-   <div class="field"><label for="inquiry">What are you trying to solve?</label><textarea id="inquiry" required></textarea></div>
-   <button class="submit" type="submit">Start a conversation →</button>
-   <p class="form-note" id="note">Thank you. Connect this form to your CRM or form endpoint before production launch.</p>
-  </form>
- </div>
-</section>
-</main>
-
-<footer><div class="container foot"><span>MINDMACHINE.IO</span><span>© <span id="year"></span> Mind Machine. All rights reserved.</span></div></footer>
-
+<footer style="background:#0E1A2B;color:#A9B3C1;padding:40px 0;border-top:1px solid #22324A">
+<div class="wrap foot">
+<img alt="MindMachine.io" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDQgNjQiIHdpZHRoPSIzMDQiIGhlaWdodD0iNjQiPjxwb2x5Z29uIHBvaW50cz0iNiw2MCA2LDE0IDMyLDMwIDMyLDQyIDE2LDMyIDE2LDYwIiBmaWxsPSIjRjZGM0VDIj48L3BvbHlnb24+PHBvbHlnb24gcG9pbnRzPSIzMiwzMCA1OCwxNCA1OCw2MCA0OCw2MCA0OCwzMiAzMiw0MiIgZmlsbD0iIzJGRDRCQiI+PC9wb2x5Z29uPjxwYXRoIGQ9Ik04Mi41MDQ4ODI4MTI1IDQzLjBIODQuNDk3MDcwMzEyNVYzMi40Njc3NzM0Mzc1Qzg0LjQ5NzA3MDMxMjUgMjkuNzU3ODEyNSA4Ni4zNTc0MjE4NzUgMjguMTc1NzgxMjUgODguNTU0Njg3NSAyOC4xNzU3ODEyNUM5MC42MzQ3NjU2MjUgMjguMTc1NzgxMjUgOTIuMDk5NjA5Mzc1IDI5LjU4MjAzMTI1IDkyLjA5OTYwOTM3NSAzMS44NTI1MzkwNjI1VjQzLjBIOTQuMDc3MTQ4NDM3NVYzMi4yMDQxMDE1NjI1Qzk0LjA3NzE0ODQzNzUgMjkuNzcyNDYwOTM3NSA5NS42ODg0NzY1NjI1IDI4LjE3NTc4MTI1IDk4LjA0Njg3NSAyOC4xNzU3ODEyNUMxMDAuMDk3NjU2MjUgMjguMTc1NzgxMjUgMTAxLjY3OTY4NzUgMjkuMzkxNjAxNTYyNSAxMDEuNjc5Njg3NSAzMi4wMjgzMjAzMTI1VjQzLjBIMTAzLjY3MTg3NVYzMS45Njk3MjY1NjI1QzEwMy42NzE4NzUgMjguMjkyOTY4NzUgMTAxLjQ4OTI1NzgxMjUgMjYuMzQ0NzI2NTYyNSA5OC41NzQyMTg3NSAyNi4zNDQ3MjY1NjI1Qzk2LjIwMTE3MTg3NSAyNi4zNDQ3MjY1NjI1IDk0LjIwODk4NDM3NSAyNy42NDg0Mzc1IDkzLjQzMjYxNzE4NzUgMjkuODE2NDA2MjVDOTIuODYxMzI4MTI1IDI3LjY5MjM4MjgxMjUgOTEuMzA4NTkzNzUgMjYuMzQ0NzI2NTYyNSA4OS4xMjU5NzY1NjI1IDI2LjM0NDcyNjU2MjVDODcuMTc3NzM0Mzc1IDI2LjM0NDcyNjU2MjUgODUuMjczNDM3NSAyNy4zOTk0MTQwNjI1IDg0LjQ1MzEyNSAyOS42NTUyNzM0Mzc1TDg0LjQzODQ3NjU2MjUgMjYuNjIzMDQ2ODc1SDgyLjUwNDg4MjgxMjVaIE0xMDguMDgxNjQwNjI1IDQzLjBIMTEwLjA3MzgyODEyNVYyNi42MjMwNDY4NzVIMTA4LjA4MTY0MDYyNVpNMTA5LjA3NzczNDM3NSAyMy41OTA4MjAzMTI1QzEwOS44ODMzOTg0Mzc1IDIzLjU5MDgyMDMxMjUgMTEwLjU0MjU3ODEyNSAyMi45NzU1ODU5Mzc1IDExMC41NDI1NzgxMjUgMjIuMTk5MjE4NzVDMTEwLjU0MjU3ODEyNSAyMS40MjI4NTE1NjI1IDEwOS44ODMzOTg0Mzc1IDIwLjgwNzYxNzE4NzUgMTA5LjA3NzczNDM3NSAyMC44MDc2MTcxODc1QzEwOC4yODY3MTg3NSAyMC44MDc2MTcxODc1IDEwNy42Mjc1MzkwNjI1IDIxLjQyMjg1MTU2MjUgMTA3LjYyNzUzOTA2MjUgMjIuMTk5MjE4NzVDMTA3LjYyNzUzOTA2MjUgMjIuOTc1NTg1OTM3NSAxMDguMjg2NzE4NzUgMjMuNTkwODIwMzEyNSAxMDkuMDc3NzM0Mzc1IDIzLjU5MDgyMDMxMjVaIE0xMTYuNDc1NzgxMjUwMDAwMDEgMzIuNzkwMDM5MDYyNUMxMTYuNDc1NzgxMjUwMDAwMDEgMjkuOTc3NTM5MDYyNSAxMTguNDA5Mzc1MDAwMDAwMDEgMjguMjE5NzI2NTYyNSAxMjEuMDAyMTQ4NDM3NTAwMDEgMjguMjE5NzI2NTYyNUMxMjMuNTIxNjc5Njg3NTAwMDEgMjguMjE5NzI2NTYyNSAxMjUuMTQ3NjU2MjUwMDAwMDEgMjkuODc1IDEyNS4xNDc2NTYyNTAwMDAwMSAzMi41NTU2NjQwNjI1VjQzLjBIMTI3LjEyNTE5NTMxMjUwMDAxVjMyLjQwOTE3OTY4NzVDMTI3LjEyNTE5NTMxMjUwMDAxIDI4LjUyNzM0Mzc1IDEyNC44NTQ2ODc1MDAwMDAwMSAyNi40MDMzMjAzMTI1IDEyMS41Mjk0OTIxODc1MDAwMSAyNi40MDMzMjAzMTI1QzExOS4yODgyODEyNTAwMDAwMSAyNi40MDMzMjAzMTI1IDExNy40MTMyODEyNTAwMDAwMSAyNy4zNzAxMTcxODc1IDExNi40MTcxODc1MDAwMDAwMSAyOS42NDA2MjVMMTE2LjQwMjUzOTA2MjUwMDAxIDI2LjYyMzA0Njg3NUgxMTQuNDgzNTkzNzUwMDAwMDFWNDMuMEgxMTYuNDc1NzgxMjUwMDAwMDFaIE0xMzcuMzk0MzM1OTM3NTAwMDIgNDMuMzUxNTYyNUMxNDAuMzUzMzIwMzEyNTAwMDIgNDMuMzUxNTYyNSAxNDEuNzc0MjE4NzUwMDAwMDIgNDEuNDYxOTE0MDYyNSAxNDIuNDMzMzk4NDM3NTAwMDIgMzkuOTM4NDc2NTYyNUgxNDIuNjUzMTI1MDAwMDAwMDJWNDMuMEgxNDQuNTcyMDcwMzEyNTAwMDJWMjEuMTczODI4MTI1SDE0Mi41OTQ1MzEyNTAwMDAwMlYyOS43NzI0NjA5Mzc1SDE0Mi40MzMzOTg0Mzc1MDAwMkMxNDEuNzg4ODY3MTg3NTAwMDIgMjguMjc4MzIwMzEyNSAxNDAuNDExOTE0MDYyNTAwMDIgMjYuNDAzMzIwMzEyNSAxMzcuNDA4OTg0Mzc1MDAwMDIgMjYuNDAzMzIwMzEyNUMxMzMuNDA5OTYwOTM3NTAwMDIgMjYuNDAzMzIwMzEyNSAxMzAuNjg1MzUxNTYyNTAwMDIgMjkuODAxNzU3ODEyNSAxMzAuNjg1MzUxNTYyNTAwMDIgMzQuODU1NDY4NzVDMTMwLjY4NTM1MTU2MjUwMDAyIDM5Ljk1MzEyNSAxMzMuMzk1MzEyNTAwMDAwMDIgNDMuMzUxNTYyNSAxMzcuMzk0MzM1OTM3NTAwMDIgNDMuMzUxNTYyNVpNMTM3LjY1ODAwNzgxMjUwMDAyIDQxLjU0OTgwNDY4NzVDMTM0LjQ2NDY0ODQzNzUwMDAyIDQxLjU0OTgwNDY4NzUgMTMyLjY5MjE4NzUwMDAwMDAyIDM4LjYwNTQ2ODc1IDEzMi42OTIxODc1MDAwMDAwMiAzNC44NDA4MjAzMTI1QzEzMi42OTIxODc1MDAwMDAwMiAzMS4wOTA4MjAzMTI1IDEzNC40NTAwMDAwMDAwMDAwMiAyOC4yMDUwNzgxMjUgMTM3LjY1ODAwNzgxMjUwMDAyIDI4LjIwNTA3ODEyNUMxNDAuODIyMDcwMzEyNTAwMDIgMjguMjA1MDc4MTI1IDE0Mi42MDkxNzk2ODc1MDAwMiAzMC45NDQzMzU5Mzc1IDE0Mi42MDkxNzk2ODc1MDAwMiAzNC44NDA4MjAzMTI1QzE0Mi42MDkxNzk2ODc1MDAwMiAzOC43NTE5NTMxMjUgMTQwLjgwNzQyMTg3NTAwMDAyIDQxLjU0OTgwNDY4NzUgMTM3LjY1ODAwNzgxMjUwMDAyIDQxLjU0OTgwNDY4NzVaIiBmaWxsPSIjRjZGM0VDIj48L3BhdGg+PHBhdGggZD0iTTE0OC41MTMwODU5Mzc1MDAwMiA0My4wSDE1Mi4zMjE2Nzk2ODc1MDAwMlYzMi45NjU4MjAzMTI1QzE1Mi4zMjE2Nzk2ODc1MDAwMiAzMC43ODMyMDMxMjUgMTUzLjY5ODYzMjgxMjUwMDAyIDI5LjYxMTMyODEyNSAxNTUuMzY4NTU0Njg3NTAwMDIgMjkuNjExMzI4MTI1QzE1Ni45Nzk4ODI4MTI1MDAwMiAyOS42MTEzMjgxMjUgMTU4LjEzNzEwOTM3NTAwMDAyIDMwLjY5NTMxMjUgMTU4LjEzNzEwOTM3NTAwMDAyIDMyLjM2NTIzNDM3NVY0My4wSDE2MS44NTc4MTI1MDAwMDAwMlYzMi43MTY3OTY4NzVDMTYxLjg1NzgxMjUwMDAwMDAyIDMwLjg4NTc0MjE4NzUgMTYyLjk4NTc0MjE4NzUwMDAyIDI5LjYxMTMyODEyNSAxNjQuODMxNDQ1MzEyNTAwMDIgMjkuNjExMzI4MTI1QzE2Ni4zOTg4MjgxMjUwMDAwMiAyOS42MTEzMjgxMjUgMTY3LjY1ODU5Mzc1MDAwMDAyIDMwLjUxOTUzMTI1IDE2Ny42NTg1OTM3NTAwMDAwMiAzMi41NDEwMTU2MjVWNDMuMEgxNzEuNDgxODM1OTM3NTAwMDJWMzEuOTU1MDc4MTI1QzE3MS40ODE4MzU5Mzc1MDAwMiAyOC4zMjIyNjU2MjUgMTY5LjIyNTk3NjU2MjUwMDAyIDI2LjM1OTM3NSAxNjYuMjgxNjQwNjI1MDAwMDIgMjYuMzU5Mzc1QzE2My45ODE4MzU5Mzc1MDAwMiAyNi4zNTkzNzUgMTYxLjkzMTA1NDY4NzUwMDAyIDI3LjU2MDU0Njg3NSAxNjEuMDUyMTQ4NDM3NTAwMDIgMjkuOTE4OTQ1MzEyNUMxNjAuMzQ5MDIzNDM3NTAwMDIgMjcuNTg5ODQzNzUgMTU4Ljk1NzQyMTg3NTAwMDAyIDI2LjM1OTM3NSAxNTYuODQ4MDQ2ODc1MDAwMDIgMjYuMzU5Mzc1QzE1NC44OTk4MDQ2ODc1MDAwMiAyNi4zNTkzNzUgMTUzLjA1NDEwMTU2MjUwMDAyIDI3LjQxNDA2MjUgMTUyLjIwNDQ5MjE4NzUwMDAyIDI5Ljc0MzE2NDA2MjVMMTUyLjA4NzMwNDY4NzUwMDAyIDI2LjYyMzA0Njg3NUgxNDguNTEzMDg1OTM3NTAwMDJaIE0xNzkuNDk1MTE3MTg3NTAwMDMgNDMuMzM2OTE0MDYyNUMxODIuMDQzOTQ1MzEyNTAwMDMgNDMuMzM2OTE0MDYyNSAxODMuNTk2Njc5Njg3NTAwMDMgNDIuMTUwMzkwNjI1IDE4NC4zMTQ0NTMxMjUwMDAwMyA0MC43NDQxNDA2MjVIMTg0LjQ2MDkzNzUwMDAwMDAzVjQzLjBIMTg4LjEwODM5ODQzNzUwMDAzVjMyLjA1NzYxNzE4NzVDMTg4LjEwODM5ODQzNzUwMDAzIDI3LjY5MjM4MjgxMjUgMTg0LjUwNDg4MjgxMjUwMDAzIDI2LjQxNzk2ODc1IDE4MS40Mjg3MTA5Mzc1MDAwMyAyNi40MTc5Njg3NUMxNzguMTQ3NDYwOTM3NTAwMDMgMjYuNDE3OTY4NzUgMTc1LjQ1MjE0ODQzNzUwMDAzIDI3LjgwOTU3MDMxMjUgMTc0LjQ4NTM1MTU2MjUwMDAzIDMwLjY5NTMxMjVMMTc4LjAxNTYyNTAwMDAwMDAzIDMxLjQxMzA4NTkzNzVDMTc4LjQxMTEzMjgxMjUwMDAzIDMwLjMyOTEwMTU2MjUgMTc5LjUzOTA2MjUwMDAwMDAzIDI5LjM0NzY1NjI1IDE4MS40NDMzNTkzNzUwMDAwMyAyOS4zNDc2NTYyNUMxODMuMzAzNzEwOTM3NTAwMDMgMjkuMzQ3NjU2MjUgMTg0LjI5OTgwNDY4NzUwMDAzIDMwLjI4NTE1NjI1IDE4NC4yOTk4MDQ2ODc1MDAwMyAzMS44ODE4MzU5Mzc1VjMxLjk1NTA3ODEyNUMxODQuMjk5ODA0Njg3NTAwMDMgMzMuMDgzMDA3ODEyNSAxODMuMDk4NjMyODEyNTAwMDMgMzMuMTI2OTUzMTI1IDE4MC4yNTY4MzU5Mzc1MDAwMyAzMy40MzQ1NzAzMTI1QzE3Ny4wOTI3NzM0Mzc1MDAwMyAzMy43NzE0ODQzNzUgMTc0LjAxNjYwMTU2MjUwMDAzIDM0LjcwODk4NDM3NSAxNzQuMDE2NjAxNTYyNTAwMDMgMzguNDAwMzkwNjI1QzE3NC4wMTY2MDE1NjI1MDAwMyA0MS42MjMwNDY4NzUgMTc2LjM3NTAwMDAwMDAwMDAzIDQzLjMzNjkxNDA2MjUgMTc5LjQ5NTExNzE4NzUwMDAzIDQzLjMzNjkxNDA2MjVaTTE4MC40NzY1NjI1MDAwMDAwMyA0MC41MDk3NjU2MjVDMTc4Ljg2NTIzNDM3NTAwMDAzIDQwLjUwOTc2NTYyNSAxNzcuNzA4MDA3ODEyNTAwMDMgMzkuNzc3MzQzNzUgMTc3LjcwODAwNzgxMjUwMDAzIDM4LjM1NjQ0NTMxMjVDMTc3LjcwODAwNzgxMjUwMDAzIDM2Ljg2MjMwNDY4NzUgMTc4Ljk5NzA3MDMxMjUwMDAzIDM2LjIzMjQyMTg3NSAxODAuNzEwOTM3NTAwMDAwMDMgMzUuOTk4MDQ2ODc1QzE4MS42OTIzODI4MTI1MDAwMyAzNS44NjYyMTA5Mzc1IDE4My44MTY0MDYyNTAwMDAwMyAzNS42MDI1MzkwNjI1IDE4NC4zMjkxMDE1NjI1MDAwMyAzNS4xOTIzODI4MTI1VjM3LjEyNTk3NjU2MjVDMTg0LjMyOTEwMTU2MjUwMDAzIDM4Ljk0MjM4MjgxMjUgMTgyLjgyMDMxMjUwMDAwMDAzIDQwLjUwOTc2NTYyNSAxODAuNDc2NTYyNTAwMDAwMDMgNDAuNTA5NzY1NjI1WiBNMTk4LjY1NTg1OTM3NTAwMDAzIDQzLjMzNjkxNDA2MjVDMjAyLjMzMjYxNzE4NzUwMDAzIDQzLjMzNjkxNDA2MjUgMjA1LjA1NzIyNjU2MjUwMDAzIDQxLjM0NDcyNjU2MjUgMjA1Ljc2MDM1MTU2MjUwMDAzIDM4LjA3ODEyNUwyMDIuMjAwNzgxMjUwMDAwMDMgMzcuMzMxMDU0Njg3NUMyMDEuODA1MjczNDM3NTAwMDMgMzkuMTAzNTE1NjI1IDIwMC41NjAxNTYyNTAwMDAwMyA0MC4yNDYwOTM3NSAxOTguNjg1MTU2MjUwMDAwMDMgNDAuMjQ2MDkzNzVDMTk2LjAzMzc4OTA2MjUwMDAzIDQwLjI0NjA5Mzc1IDE5NC43MTU0Mjk2ODc1MDAwMyAzNy45MTY5OTIxODc1IDE5NC43MTU0Mjk2ODc1MDAwMyAzNC44ODQ3NjU2MjVDMTk0LjcxNTQyOTY4NzUwMDAzIDMxLjgyMzI0MjE4NzUgMTk2LjAzMzc4OTA2MjUwMDAzIDI5LjUwODc4OTA2MjUgMTk4LjY4NTE1NjI1MDAwMDAzIDI5LjUwODc4OTA2MjVDMjAwLjUzMDg1OTM3NTAwMDAzIDI5LjUwODc4OTA2MjUgMjAxLjc0NjY3OTY4NzUwMDAzIDMwLjYwNzQyMTg3NSAyMDIuMTU2ODM1OTM3NTAwMDMgMzIuMzA2NjQwNjI1TDIwNS43MTY0MDYyNTAwMDAwMyAzMS41NTk1NzAzMTI1QzIwNS4wMTMyODEyNTAwMDAwMyAyOC4zNjYyMTA5Mzc1IDIwMi4zMDMzMjAzMTI1MDAwMyAyNi40MTc5Njg3NSAxOTguNjU1ODU5Mzc1MDAwMDMgMjYuNDE3OTY4NzVDMTkzLjg4MDQ2ODc1MDAwMDAzIDI2LjQxNzk2ODc1IDE5MC44MzM1OTM3NTAwMDAwMyAyOS44MDE3NTc4MTI1IDE5MC44MzM1OTM3NTAwMDAwMyAzNC44OTk0MTQwNjI1QzE5MC44MzM1OTM3NTAwMDAwMyAzOS45Mzg0NzY1NjI1IDE5My44ODA0Njg3NTAwMDAwMyA0My4zMzY5MTQwNjI1IDE5OC42NTU4NTkzNzUwMDAwMyA0My4zMzY5MTQwNjI1WiBNMjEyLjIzNTU0Njg3NTAwMDA0IDMzLjQwNTI3MzQzNzVDMjEyLjIzNTU0Njg3NTAwMDA0IDMxLjAzMjIyNjU2MjUgMjEzLjcwMDM5MDYyNTAwMDA0IDI5LjY1NTI3MzQzNzUgMjE1LjczNjUyMzQzNzUwMDA0IDI5LjY1NTI3MzQzNzVDMjE3LjcyODcxMDkzNzUwMDA0IDI5LjY1NTI3MzQzNzUgMjE4LjkyOTg4MjgxMjUwMDA0IDMwLjk3MzYzMjgxMjUgMjE4LjkyOTg4MjgxMjUwMDA0IDMzLjE3MDg5ODQzNzVWNDMuMEgyMjIuNzUzMTI1MDAwMDAwMDRWMzIuNTg0OTYwOTM3NUMyMjIuNzUzMTI1MDAwMDAwMDQgMjguNjQ0NTMxMjUgMjIwLjUxMTkxNDA2MjUwMDA0IDI2LjQxNzk2ODc1IDIxNy4xNDI3NzM0Mzc1MDAwNCAyNi40MTc5Njg3NUMyMTQuODEzNjcxODc1MDAwMDQgMjYuNDE3OTY4NzUgMjEzLjE1ODM5ODQzNzUwMDA0IDI3LjUwMTk1MzEyNSAyMTIuMTc2OTUzMTI1MDAwMDQgMjkuNjU1MjczNDM3NVYyMS4xNzM4MjgxMjVIMjA4LjQyNjk1MzEyNTAwMDA0VjQzLjBIMjEyLjIzNTU0Njg3NTAwMDA0WiBNMjI2LjE5NjA5Mzc1MDAwMDA1IDQzLjBIMjMwLjAwNDY4NzUwMDAwMDA1VjI2LjYyMzA0Njg3NUgyMjYuMTk2MDkzNzUwMDAwMDVaTTIyOC4xMDAzOTA2MjUwMDAwNSAyNC4zMDg1OTM3NUMyMjkuMzE2MjEwOTM3NTAwMDUgMjQuMzA4NTkzNzUgMjMwLjMyNjk1MzEyNTAwMDA1IDIzLjM3MTA5Mzc1IDIzMC4zMjY5NTMxMjUwMDAwNSAyMi4yMTM4NjcxODc1QzIzMC4zMjY5NTMxMjUwMDAwNSAyMS4wNTY2NDA2MjUgMjI5LjMxNjIxMDkzNzUwMDA1IDIwLjEzMzc4OTA2MjUgMjI4LjEwMDM5MDYyNTAwMDA1IDIwLjEzMzc4OTA2MjVDMjI2Ljg4NDU3MDMxMjUwMDA1IDIwLjEzMzc4OTA2MjUgMjI1Ljg4ODQ3NjU2MjUwMDA1IDIxLjA1NjY0MDYyNSAyMjUuODg4NDc2NTYyNTAwMDUgMjIuMjEzODY3MTg3NUMyMjUuODg4NDc2NTYyNTAwMDUgMjMuMzcxMDkzNzUgMjI2Ljg4NDU3MDMxMjUwMDA1IDI0LjMwODU5Mzc1IDIyOC4xMDAzOTA2MjUwMDAwNSAyNC4zMDg1OTM3NVogTTIzNy4yNTYyNTAwMDAwMDAwNSAzMy40MDUyNzM0Mzc1QzIzNy4yNTYyNTAwMDAwMDAwNSAzMS4wMzIyMjY1NjI1IDIzOC43MjEwOTM3NTAwMDAwNSAyOS42NTUyNzM0Mzc1IDI0MC43NTcyMjY1NjI1MDAwNSAyOS42NTUyNzM0Mzc1QzI0Mi43NDk0MTQwNjI1MDAwNSAyOS42NTUyNzM0Mzc1IDI0My45NTA1ODU5Mzc1MDAwNSAzMC45NzM2MzI4MTI1IDI0My45NTA1ODU5Mzc1MDAwNSAzMy4xNzA4OTg0Mzc1VjQzLjBIMjQ3Ljc1OTE3OTY4NzUwMDA1VjMyLjU4NDk2MDkzNzVDMjQ3Ljc1OTE3OTY4NzUwMDA1IDI4LjY0NDUzMTI1IDI0NS41MzI2MTcxODc1MDAwNSAyNi40MTc5Njg3NSAyNDIuMTYzNDc2NTYyNTAwMDUgMjYuNDE3OTY4NzVDMjM5Ljc2MTEzMjgxMjUwMDA1IDI2LjQxNzk2ODc1IDIzOC4wNjE5MTQwNjI1MDAwNSAyNy41ODk4NDM3NSAyMzcuMDk1MTE3MTg3NTAwMDUgMjkuODg5NjQ4NDM3NUwyMzcuMDUxMTcxODc1MDAwMDUgMjYuNjIzMDQ2ODc1SDIzMy40NDc2NTYyNTAwMDAwNVY0My4wSDIzNy4yNTYyNTAwMDAwMDAwNVogTTI1OC40Mzg0NzY1NjI1MDAwNiA0My4zMzY5MTQwNjI1QzI2Mi4wODU5Mzc1MDAwMDAwNiA0My4zMzY5MTQwNjI1IDI2NC42MzQ3NjU2MjUwMDAwNiA0MS41OTM3NSAyNjUuNDI1NzgxMjUwMDAwMDYgMzguOTQyMzgyODEyNUwyNjEuOTI0ODA0Njg3NTAwMDYgMzguMjI0NjA5Mzc1QzI2MS40MTIxMDkzNzUwMDAwNiAzOS42MTYyMTA5Mzc1IDI2MC4xNTIzNDM3NTAwMDAwNiA0MC4zNDg2MzI4MTI1IDI1OC40ODI0MjE4NzUwMDAwNiA0MC4zNDg2MzI4MTI1QzI1Ni4wMzYxMzI4MTI1MDAwNiA0MC4zNDg2MzI4MTI1IDI1NC4zODA4NTkzNzUwMDAwNiAzOC43OTU4OTg0Mzc1IDI1NC4yNzgzMjAzMTI1MDAwNiAzNS44ODA4NTkzNzVIMjY1LjY3NDgwNDY4NzUwMDA2VjM0LjY3OTY4NzVDMjY1LjY3NDgwNDY4NzUwMDA2IDI4LjkzNzUgMjYyLjE4ODQ3NjU2MjUwMDA2IDI2LjQxNzk2ODc1IDI1OC4xODk0NTMxMjUwMDAwNiAyNi40MTc5Njg3NUMyNTMuNTAxOTUzMTI1MDAwMDYgMjYuNDE3OTY4NzUgMjUwLjQ4NDM3NTAwMDAwMDA2IDI5Ljg3NSAyNTAuNDg0Mzc1MDAwMDAwMDYgMzQuOTE0MDYyNUMyNTAuNDg0Mzc1MDAwMDAwMDYgNDAuMDQxMDE1NjI1IDI1My41MDE5NTMxMjUwMDAwNiA0My4zMzY5MTQwNjI1IDI1OC40Mzg0NzY1NjI1MDAwNiA0My4zMzY5MTQwNjI1Wk0yNTQuMjkyOTY4NzUwMDAwMDYgMzMuMjg4MDg1OTM3NUMyNTQuNDY4NzUwMDAwMDAwMDYgMzEuMTA1NDY4NzUgMjU1Ljg3NTAwMDAwMDAwMDA2IDI5LjQwNjI1IDI1OC4yMDQxMDE1NjI1MDAwNiAyOS40MDYyNUMyNjAuNDc0NjA5Mzc1MDAwMDYgMjkuNDA2MjUgMjYxLjc0OTAyMzQzNzUwMDA2IDMwLjk0NDMzNTkzNzUgMjYxLjk2ODc1MDAwMDAwMDA2IDMzLjI4ODA4NTkzNzVaIiBmaWxsPSIjRjZGM0VDIj48L3BhdGg+PHBhdGggZD0iTTI3MS42OTUzMTI1MDAwMDAwNiA0My4yNDkwMjM0Mzc1QzI3My4wMTM2NzE4NzUwMDAwNiA0My4yNDkwMjM0Mzc1IDI3NC4wNTM3MTA5Mzc1MDAwNiA0Mi4yMjM2MzI4MTI1IDI3NC4wNTM3MTA5Mzc1MDAwNiA0MC45MDUyNzM0Mzc1QzI3NC4wNTM3MTA5Mzc1MDAwNiAzOS42MDE1NjI1IDI3My4wMTM2NzE4NzUwMDAwNiAzOC41NzYxNzE4NzUgMjcxLjY5NTMxMjUwMDAwMDA2IDM4LjU3NjE3MTg3NUMyNzAuMzc2OTUzMTI1MDAwMDYgMzguNTc2MTcxODc1IDI2OS4zNTE1NjI1MDAwMDAwNiAzOS42MDE1NjI1IDI2OS4zNTE1NjI1MDAwMDAwNiA0MC45MDUyNzM0Mzc1QzI2OS4zNTE1NjI1MDAwMDAwNiA0Mi4yMjM2MzI4MTI1IDI3MC4zNzY5NTMxMjUwMDAwNiA0My4yNDkwMjM0Mzc1IDI3MS42OTUzMTI1MDAwMDAwNiA0My4yNDkwMjM0Mzc1WiBNMjc3LjkwNjgzNTkzNzUwMDAzIDQzLjBIMjgxLjcxNTQyOTY4NzUwMDAzVjI2LjYyMzA0Njg3NUgyNzcuOTA2ODM1OTM3NTAwMDNaTTI3OS44MTExMzI4MTI1MDAwMyAyNC4zMDg1OTM3NUMyODEuMDI2OTUzMTI1MDAwMDMgMjQuMzA4NTkzNzUgMjgyLjAzNzY5NTMxMjUwMDAzIDIzLjM3MTA5Mzc1IDI4Mi4wMzc2OTUzMTI1MDAwMyAyMi4yMTM4NjcxODc1QzI4Mi4wMzc2OTUzMTI1MDAwMyAyMS4wNTY2NDA2MjUgMjgxLjAyNjk1MzEyNTAwMDAzIDIwLjEzMzc4OTA2MjUgMjc5LjgxMTEzMjgxMjUwMDAzIDIwLjEzMzc4OTA2MjVDMjc4LjU5NTMxMjUwMDAwMDAzIDIwLjEzMzc4OTA2MjUgMjc3LjU5OTIxODc1MDAwMDAzIDIxLjA1NjY0MDYyNSAyNzcuNTk5MjE4NzUwMDAwMDMgMjIuMjEzODY3MTg3NUMyNzcuNTk5MjE4NzUwMDAwMDMgMjMuMzcxMDkzNzUgMjc4LjU5NTMxMjUwMDAwMDAzIDI0LjMwODU5Mzc1IDI3OS44MTExMzI4MTI1MDAwMyAyNC4zMDg1OTM3NVogTTI5Mi4yNjI4OTA2MjUgNDMuMzM2OTE0MDYyNUMyOTcuMDM4MjgxMjUgNDMuMzM2OTE0MDYyNSAzMDAuMDk5ODA0Njg3NSAzOS45Mzg0NzY1NjI1IDMwMC4wOTk4MDQ2ODc1IDM0Ljg5OTQxNDA2MjVDMzAwLjA5OTgwNDY4NzUgMjkuODAxNzU3ODEyNSAyOTcuMDM4MjgxMjUgMjYuNDE3OTY4NzUgMjkyLjI2Mjg5MDYyNSAyNi40MTc5Njg3NUMyODcuNDg3NSAyNi40MTc5Njg3NSAyODQuNDQwNjI1IDI5LjgwMTc1NzgxMjUgMjg0LjQ0MDYyNSAzNC44OTk0MTQwNjI1QzI4NC40NDA2MjUgMzkuOTM4NDc2NTYyNSAyODcuNDg3NSA0My4zMzY5MTQwNjI1IDI5Mi4yNjI4OTA2MjUgNDMuMzM2OTE0MDYyNVpNMjkyLjI2Mjg5MDYyNSA0MC4yNDYwOTM3NUMyODkuNjExNTIzNDM3NSA0MC4yNDYwOTM3NSAyODguMzIyNDYwOTM3NSAzNy44NzMwNDY4NzUgMjg4LjMyMjQ2MDkzNzUgMzQuODg0NzY1NjI1QzI4OC4zMjI0NjA5Mzc1IDMxLjg2NzE4NzUgMjg5LjYxMTUyMzQzNzUgMjkuNTA4Nzg5MDYyNSAyOTIuMjYyODkwNjI1IDI5LjUwODc4OTA2MjVDMjk0LjkyODkwNjI1IDI5LjUwODc4OTA2MjUgMjk2LjIzMjYxNzE4NzUgMzEuODY3MTg3NSAyOTYuMjMyNjE3MTg3NSAzNC44ODQ3NjU2MjVDMjk2LjIzMjYxNzE4NzUgMzcuODczMDQ2ODc1IDI5NC45Mjg5MDYyNSA0MC4yNDYwOTM3NSAyOTIuMjYyODkwNjI1IDQwLjI0NjA5Mzc1WiIgZmlsbD0iIzJGRDRCQiI+PC9wYXRoPjwvc3ZnPg==" style="height:32px;width:auto;display:block"/>
+<p style="margin:0;font-size:14px">© 2026 MindMachine Ltd · [Company number] · <a href="#privacy" style="color:#C9D2DD">Privacy</a></p>
+</div>
+</footer>
+</div>
 <script>
-const header=document.getElementById('header');
-addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>35),{passive:true});
-const hamb=document.getElementById('hamb'),mobile=document.getElementById('mobile');
-hamb.onclick=()=>{const o=mobile.classList.toggle('open');hamb.setAttribute('aria-expanded',o)};
-mobile.querySelectorAll('a').forEach(a=>a.onclick=()=>mobile.classList.remove('open'));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});
-document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
-document.getElementById('form').onsubmit=e=>{e.preventDefault();document.getElementById('note').style.display='block'};
-document.getElementById('year').textContent=new Date().getFullYear();
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length>1){const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}}));
 </script>
 </body>
 </html>
