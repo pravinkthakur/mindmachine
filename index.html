@@ -289,5 +289,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 const contactMailLink=document.getElementById('contact-mail-link');
 if(contactMailLink){contactMailLink.addEventListener('click',()=>{const name=(document.getElementById('contact-name')?.value||'').trim();const email=(document.getElementById('contact-email')?.value||'').trim();const message=(document.getElementById('contact-message')?.value||'').trim();const subject=encodeURIComponent(name?'MindMachine website enquiry from '+name:'MindMachine website enquiry');const body=encodeURIComponent((name?'Name: '+name+'\n':'')+(email?'Work email: '+email+'\n\n':'')+(message?'What decision are you facing?\n'+message:''));contactMailLink.href='mailto:david.higgins@mobilelab.uk?subject='+subject+'&body='+body;});}
 </script>
+<!-- publish-refresh: 2026-10-06-contact-cleanup -->
 </body>
 </html>
