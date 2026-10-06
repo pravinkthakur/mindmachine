@@ -268,13 +268,13 @@ html{scroll-behavior:smooth}body{min-width:320px}.btn{transition:opacity .2s eas
 <p style="margin:0;font-size:18px;color:#C9D2DD">Tell us about the decision you're facing — modernisation, diligence, AI readiness or a partner build. We'll come back within two working days.</p>
 <p style="margin:0;font-size:18px;font-weight:600"><a href="mailto:hello@mindmachine.io" style="color:#2FD4BB">[hello@mindmachine.io]</a></p>
 </div>
-<form style="display:flex;flex-direction:column;gap:16px;background:#0E1A2B;border-radius:14px;padding:32px">
+<form id="contact-form" style="display:flex;flex-direction:column;gap:16px;background:#0E1A2B;border-radius:14px;padding:32px">
 <div class="g2" style="gap:16px">
-<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">Name<input name="name" style="min-height:48px;border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:0 14px;font:inherit;font-size:16px" type="text"/></label>
-<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">Work email<input name="email" style="min-height:48px;border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:0 14px;font:inherit;font-size:16px" type="email"/></label>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">Name<input name="name" required style="min-height:48px;border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:0 14px;font:inherit;font-size:16px" type="text"/></label>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">Work email<input name="email" required style="min-height:48px;border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:0 14px;font:inherit;font-size:16px" type="email"/></label>
 </div>
-<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">What decision are you facing?<textarea name="message" rows="4" style="border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:12px 14px;font:inherit;font-size:16px;resize:vertical"></textarea></label>
-<button class="btn" style="align-self:flex-start;border:0;background:#2FD4BB;color:#0E1A2B;cursor:pointer;font-family:inherit" type="button">Start a conversation</button>
+<label style="display:flex;flex-direction:column;gap:6px;font-size:14px;color:#C9D2DD">What decision are you facing?<textarea name="message" rows="4" required style="border:1px solid #4A5D78;border-radius:8px;background:#13202F;color:#F6F3EC;padding:12px 14px;font:inherit;font-size:16px;resize:vertical"></textarea></label>
+<button class="btn" style="align-self:flex-start;border:0;background:#2FD4BB;color:#0E1A2B;cursor:pointer;font-family:inherit" type="submit">Start a conversation</button>
 </form>
 </div>
 </section>
@@ -287,6 +287,8 @@ html{scroll-behavior:smooth}body{min-width:320px}.btn{transition:opacity .2s eas
 </div>
 <script>
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length>1){const t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}}));
+const contactForm=document.getElementById('contact-form');
+if(contactForm){contactForm.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(contactForm);const name=(d.get('name')||'').toString().trim();const email=(d.get('email')||'').toString().trim();const message=(d.get('message')||'').toString().trim();const subject=encodeURIComponent('MindMachine website enquiry from '+name);const body=encodeURIComponent('Name: '+name+'\nWork email: '+email+'\n\nWhat decision are you facing?\n'+message);window.location.href='mailto:david.higgins@mobilelab.uk?subject='+subject+'&body='+body;});}
 </script>
 </body>
 </html>
