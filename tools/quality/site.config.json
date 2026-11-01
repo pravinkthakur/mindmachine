@@ -1,0 +1,25 @@
+{
+  "origin": "https://mindmachine.io",
+  "cname": "mindmachine.io",
+  "requireCanonical": false,
+  "knownDefects": [
+    {
+      "path": "index.html",
+      "rule": "broken-fragment",
+      "detail": "#privacy",
+      "reason": "the footer Privacy link goes nowhere because the page has never had a privacy section. Fixing it needs a privacy notice from the site owner, not an edit from this gate."
+    }
+  ],
+  "requiredPages": ["index.html"],
+  "requiredFiles": ["CNAME", "index.html"],
+  "smoke": {
+    "pages": [
+      { "path": "/", "title": "MindMachine.io", "contains": ["Understand your technology.", "id=\"contact-form\"", "Company number: 08770672"] }
+    ]
+  },
+  "published": {
+    "jekyllConfig": "_config.yml",
+    "allowedTopLevel": ["CNAME", "README.md", "_config.yml", "index.html"],
+    "excludedTooling": ["tools/", "docs/quality/", ".githooks/", ".gitattributes", ".quality-allow.json", ".secret-scan-allow.json"]
+  }
+}
