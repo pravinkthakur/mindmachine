@@ -1,0 +1,45 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches: ["main", "quality/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: 22
+
+      - name: Secret scan
+        run: node tools/quality/scan-secrets.mjs
+
+      - name: Repository hygiene
+        run: node tools/quality/check-hygiene.mjs
+
+      - name: Quality tool tests
+        run: node --test "tools/quality/*.test.mjs"
+
+      - name: HTML, metadata, links, assets and accessibility
+        run: node tools/quality/check-site.mjs
+
+      - name: HTTP smoke check
+        run: node tools/quality/smoke-site.mjs

@@ -1,0 +1,4 @@
+# Pages builds this branch with Jekyll. Quality tooling must not become part of the public site.
+exclude:
+  - tools
+  - docs
